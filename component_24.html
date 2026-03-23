@@ -1,0 +1,528 @@
+<div class="itinerary-master-page">
+    <style>
+        .itinerary-master-page {
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #ffffff;
+            color: #2c2c2c;
+            box-sizing: border-box;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        .itinerary-master-page *, .itinerary-master-page *::before, .itinerary-master-page *::after {
+            box-sizing: inherit;
+        }
+
+        /* Full Width Hero Header */
+        .imp-hero {
+            position: relative;
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            height: 85vh; 
+            min-height: 550px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden; 
+        }
+
+        .imp-hero img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            animation: impHeroZoom 10s ease-out forwards; 
+        }
+
+        @keyframes impHeroZoom {
+            0% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .imp-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .imp-hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 2rem;
+            color: #ffffff !important;
+            max-width: 60rem;
+        }
+
+        .imp-hero-title {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 400;
+            margin: 0 0 1rem 0;
+            letter-spacing: 0.05em;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            text-transform: uppercase;
+            color: #ffffff !important; 
+        }
+
+        .imp-hero-subtitle {
+            font-size: 1.25rem;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+            margin: 0;
+            color: #ffffff !important; 
+        }
+
+        /* Main Content Layout */
+        .imp-container {
+            max-width: 80rem;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+        }
+
+        .imp-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+        }
+
+        @media (min-width: 1024px) {
+            .imp-layout {
+                grid-template-columns: 2fr 1fr; 
+                align-items: stretch; 
+            }
+        }
+
+        /* Typography & Sections */
+        .imp-section {
+            margin-bottom: 4rem;
+        }
+
+        .imp-section-title {
+            font-family: "Playfair Display", serif;
+            font-size: 2rem;
+            color: #2c2c2c !important;
+            border-bottom: 1px solid #e5e5e5;
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+        }
+
+        .imp-text {
+            color: #555555;
+            font-weight: 300;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Day-by-Day Accordion */
+        .imp-day {
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .imp-day summary {
+            font-family: "Playfair Display", serif;
+            font-size: 1.35rem;
+            font-weight: 500;
+            color: #2c2c2c;
+            padding: 1.5rem 0;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+
+        .imp-day summary:hover {
+            color: #d87a4d;
+        }
+
+        .imp-day summary::-webkit-details-marker {
+            display: none; 
+        }
+
+        .imp-day summary::after {
+            content: '+';
+            font-family: system-ui, sans-serif;
+            font-size: 1.75rem;
+            font-weight: 300;
+            color: #d87a4d;
+        }
+
+        .imp-day[open] summary::after {
+            content: '−';
+        }
+
+        .imp-day-content {
+            padding-bottom: 2rem;
+            color: #555555;
+            font-weight: 300;
+            font-size: 1.05rem;
+        }
+
+        /* ==== THE CAROUSEL STYLES ==== */
+        .imp-day-carousel {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 1rem;
+            padding-bottom: 1rem;
+            margin: 1rem 0 1.5rem 0;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: #d87a4d #f0eee9;
+        }
+
+        .imp-day-carousel::-webkit-scrollbar {
+            height: 6px;
+        }
+        .imp-day-carousel::-webkit-scrollbar-track {
+            background: #f0eee9;
+            border-radius: 4px;
+        }
+        .imp-day-carousel::-webkit-scrollbar-thumb {
+            background: #d87a4d;
+            border-radius: 4px;
+        }
+
+        .imp-day-carousel img {
+            /* Since there's only one image currently, let's make it fill 100% on mobile too so it looks perfect */
+            flex: 0 0 100%;
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            scroll-snap-align: center;
+            border-radius: 4px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        @media (min-width: 768px) {
+            .imp-day-carousel img {
+                flex: 0 0 100%; 
+                scroll-snap-align: start;
+            }
+        }
+
+        .imp-day-meta {
+            margin-top: 1.5rem;
+            background: #f9f9f4;
+            padding: 1.5rem;
+            border-radius: 4px;
+            border-left: 3px solid #d87a4d;
+        }
+
+        .imp-day-meta p {
+            margin: 0 0 0.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        .imp-day-meta p:last-child {
+            margin: 0;
+        }
+
+        .imp-day-meta strong {
+            color: #2c2c2c !important;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+        }
+
+        /* Sticky Sidebar FIX */
+        .imp-sidebar-wrapper {
+            position: relative;
+            height: 100%; 
+        }
+
+        .imp-sidebar {
+            background-color: #f9f9f4;
+            padding: 2.5rem 2rem;
+            border-radius: 4px;
+            border-top: 4px solid #d87a4d;
+            
+            position: -webkit-sticky;
+            position: sticky;
+            top: 130px; 
+            z-index: 10;
+        }
+
+        .imp-price {
+            font-family: "Playfair Display", serif;
+            font-size: 2.5rem;
+            color: #2c2c2c !important;
+            margin: 0 0 0.5rem 0;
+            font-weight: 400;
+        }
+
+        .imp-price span {
+            font-family: ui-sans-serif, system-ui, sans-serif;
+            font-size: 1rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .imp-glance-list {
+            list-style: none;
+            padding: 0;
+            margin: 2rem 0;
+        }
+
+        .imp-glance-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.05rem;
+            color: #666;
+        }
+
+        .imp-glance-list li:last-child {
+            border-bottom: none;
+        }
+
+        .imp-glance-list strong {
+            font-weight: 500;
+            color: #2c2c2c !important;
+            text-align: right;
+        }
+
+        .imp-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background-color: #d87a4d;
+            color: #ffffff !important;
+            padding: 1.25rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .imp-btn:hover {
+            background-color: #be653a;
+        }
+        
+        .imp-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .imp-highlight-tag {
+            background: #f0eee9;
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #2c2c2c !important;
+            text-align: center;
+            letter-spacing: 0.05em;
+        }
+    </style>
+
+    <!-- 1. HERO HEADER AREA -->
+    <div class="imp-hero">
+        <img src="https://desert-tracks.com/wp-content/uploads/2024/04/Solly-Levi-Sossusvlei-1.jpg" alt="14-Day Namibia Self-Drive Safari">
+        <div class="imp-hero-overlay"></div>
+        <div class="imp-hero-content">
+            <h1 class="imp-hero-title">14-Day Namibia Self-Drive</h1>
+            <p class="imp-hero-subtitle">Comfort Safari</p>
+        </div>
+    </div>
+
+    <div class="imp-container">
+        <div class="imp-layout">
+            
+            <!-- 2. MAIN CONTENT AREA (Left Side) -->
+            <div class="imp-main">
+                
+                <section class="imp-section">
+                    <h2 class="imp-section-title">Overview</h2>
+                    <p class="imp-text">This exclusive Namibian journey takes you through the country's most iconic landscapes, blending adventure and relaxation at every turn. From the red dunes of the Kalahari to the coastal charm of Swakopmund, you'll experience the thrill of exploring ancient deserts, witnessing wildlife in Etosha, and uncovering cultural gems like Damaraland's rock art.</p>
+                    
+                    <div class="imp-highlights">
+                        <div class="imp-highlight-tag">Sossusvlei Dunes</div>
+                        <div class="imp-highlight-tag">Etosha National Park</div>
+                        <div class="imp-highlight-tag">Damaraland</div>
+                        <div class="imp-highlight-tag">Swakopmund</div>
+                        <div class="imp-highlight-tag">Kalahari Desert</div>
+                        <div class="imp-highlight-tag">Waterberg</div>
+                    </div>
+                </section>
+
+                <section class="imp-section">
+                    <h2 class="imp-section-title">Itinerary</h2>
+                    
+                    <!-- DAY 1-2 -->
+                    <details class="imp-day" open>
+                        <summary>Day 1 - 2: Ti Melen Boutique Guesthouse</summary>
+                        <div class="imp-day-content">
+                            <p>Experience the charm of Windhoek in a boutique guesthouse blending modern comforts with local warmth. Spend your first night in Namibia surrounded by the intimate atmosphere of Ti Melen, ideal for a peaceful start to your adventure.</p>
+                            
+                            <div class="imp-day-carousel">
+                                <img src="https://desert-tracks.com/wp-content/uploads/2025/10/oryx-walking-in-sossusvlei-namibialarge_235kb.jpeg" alt="Windhoek Arrival">
+                            </div>
+                            
+                            <div class="imp-day-meta">
+                                <p><strong>Lodge:</strong> Ti Melen Boutique Guesthouse</p>
+                                <p><strong>Location:</strong> Windhoek</p>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- DAY 2-3 -->
+                    <details class="imp-day">
+                        <summary>Day 2 - 3: Kalahari Anib Lodge</summary>
+                        <div class="imp-day-content">
+                            <p>Discover the beauty of the Kalahari at this eco-friendly lodge. The towering red dunes and starry nights set the perfect backdrop for a romantic evening. Enjoy delicious cuisine and desert exploration before retreating to your cozy room.</p>
+                            
+                            <div class="imp-day-carousel">
+                                <img src="https://desert-tracks.com/wp-content/uploads/2025/01/Bagatelle-Lodge-Kalahari-Game-Ranch-Namibia-Guest-Room-terrace-at-sunset.jpg" alt="Kalahari Lodge">
+                            </div>
+                            
+                            <div class="imp-day-meta">
+                                <p><strong>Lodge:</strong> Kalahari Anib Lodge</p>
+                                <p><strong>Location:</strong> Kalahari Desert</p>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- DAY 3-5 -->
+                    <details class="imp-day">
+                        <summary>Day 3 - 5: Desert Homestead Lodge</summary>
+                        <div class="imp-day-content">
+                            <p>Immerse yourself in the surreal beauty of the Namib Desert. Stay at Desert Homestead, nestled between the red dunes of Sossusvlei, where you can explore the world's tallest dunes and return to luxury at the lodge for intimate sunset views.</p>
+                            
+                            <div class="imp-day-carousel">
+                                <img src="https://desert-tracks.com/wp-content/uploads/2024/04/Solly-Levi-Sossusvlei-1.jpg" alt="Sossusvlei Landscape">
+                            </div>
+                            
+                            <div class="imp-day-meta">
+                                <p><strong>Lodge:</strong> Desert Homestead Lodge</p>
+                                <p><strong>Location:</strong> Sossusvlei</p>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- DAY 5-7 -->
+                    <details class="imp-day">
+                        <summary>Day 5 - 7: Swakopmund Guesthouse</summary>
+                        <div class="imp-day-content">
+                            <p>Blend adventure with relaxation at this charming guesthouse in Swakopmund, offering easy access to the beach and colonial-style comforts. Explore the unique coastal town with its German heritage, or unwind with a stroll along the ocean.</p>
+                            
+                            <div class="imp-day-carousel">
+                                <img src="https://desert-tracks.com/wp-content/uploads/2025/10/swakopmund.jpg" alt="Swakopmund">
+                            </div>
+                            
+                            <div class="imp-day-meta">
+                                <p><strong>Lodge:</strong> Swakopmund Guesthouse</p>
+                                <p><strong>Location:</strong> Swakopmund</p>
+                            </div>
+                        </div>
+                    </details>
+                    
+                    <!-- DAY 7-9 -->
+                    <details class="imp-day">
+                        <summary>Day 7 - 9: Lodge Damaraland</summary>
+                        <div class="imp-day-content">
+                            <p>In the heart of Damaraland, experience timeless landscapes and ancient rock art. Stay in a comfortable lodge designed to blend with its surroundings, offering exciting excursions to explore the desert's hidden gems, including desert elephants.</p>
+                            
+                            <div class="imp-day-carousel">
+                                <img src="https://desert-tracks.com/wp-content/uploads/2025/10/donkey-cart-solly-damaraland-large-e1759762704657-6.jpeg" alt="Damaraland Local Scene">
+                            </div>
+                            
+                            <div class="imp-day-meta">
+                                <p><strong>Lodge:</strong> Lodge Damaraland</p>
+                                <p><strong>Location:</strong> Damaraland</p>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- DAY 9-10 -->
+                    <details class="imp-day">
+                        <summary>Day 9 - 10: Etosha Safari Camp</summary>
+                        <div class="imp-day-content">
+                            <p>Set near the southern entrance to Etosha National Park, Etosha Safari Camp gives you access to one of Africa's most celebrated wildlife sanctuaries. Enjoy an evening of delicious meals and sunset views before heading into the park for safari adventures.</p>
+                            
+                            <div class="imp-day-carousel">
+                                <img src="https://desert-tracks.com/wp-content/uploads/2025/10/elephant-springbok-etosha-solly-large-e1759762664136.jpeg" alt="Etosha Safari Animals">
+                            </div>
+                            
+                            <div class="imp-day-meta">
+                                <p><strong>Lodge:</strong> Etosha Safari Camp</p>
+                                <p><strong>Location:</strong> Etosha National Park</p>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- DAY 10-12 -->
+                    <details class="imp-day">
+                        <summary>Day 10 - 12: Onguma Bush Camp</summary>
+                        <div class="imp-day-content">
+                            <p>Enjoy luxurious tented suites at Onguma, a private reserve bordering Etosha National Park. The tranquil setting allows for both thrilling game drives and romantic evenings. Unwind by the campfire after an exciting day of wildlife watching.</p>
+                            
+                            <div class="imp-day-carousel">
+                                <img src="https://desert-tracks.com/wp-content/uploads/2025/10/giraffe-botswana.jpeg" alt="Safari Wildlife">
+                            </div>
+                            
+                            <div class="imp-day-meta">
+                                <p><strong>Lodge:</strong> Onguma Bush Camp</p>
+                                <p><strong>Location:</strong> Etosha Border Reserve</p>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- DAY 12-14 -->
+                    <details class="imp-day">
+                        <summary>Day 12 - 14: Otjiwa Collection - Eagle's Rest</summary>
+                        <div class="imp-day-content">
+                            <p>End your Namibian adventure in luxury at Eagle's Rest. Nestled in the peaceful Otjiwa Nature Reserve, the lodge offers exceptional service and the chance to unwind with private bush walks, spa treatments, or simply relax in your charming accommodation.</p>
+                            
+                            <div class="imp-day-carousel">
+                                <img src="https://desert-tracks.com/wp-content/uploads/2025/10/fish-river-canyon-viola-large-e1759762247457-2.jpeg" alt="Otjiwa Nature">
+                            </div>
+                            
+                            <div class="imp-day-meta">
+                                <p><strong>Lodge:</strong> Otjiwa Collection - Eagle's Rest</p>
+                                <p><strong>Location:</strong> Otjiwa Nature Reserve</p>
+                            </div>
+                        </div>
+                    </details>
+
+                </section>
+            </div>
+
+            <!-- 3. SIDEBAR AREA (Right Side) -->
+            <div class="imp-sidebar-wrapper">
+                <div class="imp-sidebar">
+                    <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-top: 0; color: #2c2c2c !important; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 1rem;">At a Glance</h3>
+                    
+                    <ul class="imp-glance-list">
+                        <li><span>Duration</span> <strong>14 Days</strong></li>
+                        <li><span>Travel Style</span> <strong>Self-Drive</strong></li>
+                        <li><span>Destinations</span> <strong style="max-width: 60%;">Windhoek, Sossusvlei, Etosha & more</strong></li>
+                    </ul>
+
+                    <a href="https://desert-tracks.com/contact/" class="imp-btn" style="margin-top: 2rem;">Enquire Now</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
