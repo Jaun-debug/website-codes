@@ -309,42 +309,64 @@
             });
         }
 
-        function loadComponent(idx) {
+        
+
+        let preloadedCode = "";
+
+        async function loadComponent(idx) {
             activeIndex = idx;
             const cmp = components[idx];
             
             document.getElementById('headerTitle').innerText = cmp.title;
             document.getElementById('headerDesc').innerText = cmp.desc;
             document.getElementById('urlBar').innerText = cmp.file;
-            
             document.getElementById('loader').classList.add('active');
             
             renderNav();
             
             const frame = document.getElementById('previewFrame');
             frame.src = cmp.file;
-            
-            frame.onload = () => {
-                // Fallback to clear loader if not cleared by postMessage
-                setTimeout(() => { document.getElementById('loader').classList.remove('active'); }, 300);
-            };
-        }
-
-        async function copyActiveCode() {
-            if (activeIndex < 0) return;
-            const cmp = components[activeIndex];
+            frame.onload = () => { setTimeout(() => { document.getElementById('loader').classList.remove('active'); }, 300); };
             
             try {
                 const res = await fetch(cmp.file);
-                const code = await res.text();
+                preloadedCode = await res.text();
+            } catch(e) {
+                console.error("Failed to preload code");
+            }
+        }
+
+        function copyActiveCode() {
+            if (activeIndex < 0) return;
+            
+            try {
+                // Fallback for older Safari: Hidden text area
+                const textArea = document.createElement('textarea');
+                textArea.value = preloadedCode;
+                textArea.style.position = 'fixed';
+                textArea.style.left = '-999999px';
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
                 
-                await navigator.clipboard.writeText(code);
+                const successful = document.execCommand('copy');
+                document.body.removeChild(textArea);
+
+                if (successful) {
+                    const toast = document.getElementById('toast');
+                    toast.classList.add('show');
+                    setTimeout(() => toast.classList.remove('show'), 3000);
+                    return;
+                }
                 
-                const toast = document.getElementById('toast');
-                toast.classList.add('show');
-                setTimeout(() => toast.classList.remove('show'), 3000);
+                // Modern API if fallback failed
+                navigator.clipboard.writeText(preloadedCode).then(() => {
+                    const toast = document.getElementById('toast');
+                    toast.classList.add('show');
+                    setTimeout(() => toast.classList.remove('show'), 3000);
+                });
             } catch (err) {
-                alert("Could not copy! Try opening the file directly.");
+                alert("Copy failed. Try opening the source file manually.");
             }
         }
 
