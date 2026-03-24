@@ -85,9 +85,9 @@
             top: 0;
             left: 0;
             width: 100vw;
-            height: auto; /* Replaced fixed height with dynamic auto */
-            aspect-ratio: 834 / 760; /* Perfectly matches your custom map dimensions */
-            background: rgba(248, 243, 235, 0.05); /* Nearly invisible glass block since the map is clear */
+            height: auto; 
+            aspect-ratio: 866 / 702; /* Perfectly matches your screenshot dimensions */
+            background: #ffffff; /* Solid white so opacity lightens the map */
             backdrop-filter: blur(2px);
             -webkit-backdrop-filter: blur(2px);
             border: none;
@@ -118,7 +118,7 @@
                 left: auto;
                 width: 360px; /* Slightly wider to give the map breathing room */
                 height: auto;
-                aspect-ratio: 834 / 760; /* Perfectly matches custom map so zero cropping */
+                aspect-ratio: 866 / 702; /* Perfectly matches custom map so zero cropping */
                 z-index: 10;
                 border-radius: 16px;
                 transform: translateX(20px); /* slide in from right */
@@ -133,9 +133,9 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.95; /* Reveal the beautiful custom map */
-            mix-blend-mode: normal; /* Remove multiply filter so true colors shine */
-            filter: brightness(0.9); /* Map is 10% lighter as requested */
+            opacity: 0.70; /* 30% lighter via opacity blending into the white background */
+            mix-blend-mode: normal; 
+            filter: none; 
         }
 
         /* Map Pins */
@@ -143,13 +143,14 @@
             position: absolute;
             width: 24px;
             height: 24px;
-            background-color: transparent; /* No white color inside! */
+            background-color: #d87a4d; /* Mark as orange circles */
             border-radius: 50%;
-            border: 1px solid rgba(17, 17, 17, 0.8); /* Dark circle border */
-            color: #111111;
-            font-size: 0.8rem; /* Slightly larger text */
-            font-weight: 600; /* Bolder text for visibility against transparent background */
-            text-shadow: 0px 0px 5px rgba(255, 255, 255, 1); /* Intense white glow to guarantee readability over the map lines */
+            border: 2px solid #ffffff; /* Small white ring to make them pop perfectly */
+            color: #ffffff; /* White numbers inside */
+            font-size: 0.8rem; 
+            font-weight: 600; 
+            text-shadow: none; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15); /* Soft drop shadow */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -397,15 +398,7 @@
             overflow-x: auto;
             scroll-snap-type: x mandatory;
             scrollbar-width: none;
-            margin-right: -2rem; 
-            padding-right: 2rem;
-        }
-        
-        @media (min-width: 1024px) {
-            .lux-carousel {
-                margin-right: -4rem; 
-                padding-right: 4rem;
-            }
+            /* Removed the aggressive right-margin bleed so photos fit correctly on screen */
         }
 
         .lux-carousel::-webkit-scrollbar {
@@ -413,7 +406,7 @@
         }
 
         .lux-carousel img {
-            flex: 0 0 85%;
+            flex: 0 0 100%; /* Snap to full width instead of 85% */
             height: 380px;
             object-fit: cover;
             border-radius: 4px;
@@ -422,8 +415,7 @@
 
         @media (min-width: 768px) {
             .lux-carousel img {
-                flex: 0 0 75%;
-                height: 420px;
+                height: 480px; /* Slightly taller for better 100% impact */
             }
         }
 
@@ -471,45 +463,45 @@
             </button>
 
             <!-- Authentic Namibia Map Background (Replace with WP media URL when live) -->
-            <img src="https://website-codes-vert.vercel.app/custom_map.jpg" alt="Namibia Map Route" class="map-bg">
+            <img src="https://website-codes-vert.vercel.app/route_map.png" alt="Namibia Map Route" class="map-bg">
             
-            <!-- Map Pins (Precisely calibrated to the Wetu Route + Vintage Custom Map) -->
-            <div class="lux-map-pin" data-target="day-1 day-14" style="top: 55%; left: 47%;">
+            <!-- Map Pins (Precisely calibrated to overlay the circles on the Google Map) -->
+            <div class="lux-map-pin" data-target="day-1 day-14" style="top: 58%; left: 60%;">
                 <span class="pin-text">1</span>
                 <svg class="pin-car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 14h14M3 8h11M14 8l3 6h4v4h-3M3 8v10h2M16 11v-3M3 8C3 7 4 6 5 6h9l2 2v3"></path><circle cx="7" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg>
                 <span class="pin-label">Windhoek</span>
             </div>
-            <div class="lux-map-pin" data-target="day-2" style="top: 67%; left: 55%;">
+            <div class="lux-map-pin" data-target="day-2" style="top: 88%; left: 78%;">
                 <span class="pin-text">2</span>
                 <svg class="pin-car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 14h14M3 8h11M14 8l3 6h4v4h-3M3 8v10h2M16 11v-3M3 8C3 7 4 6 5 6h9l2 2v3"></path><circle cx="7" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg>
                 <span class="pin-label">Kalahari</span>
             </div>
-            <div class="lux-map-pin" data-target="day-3" style="top: 66%; left: 34%;">
+            <div class="lux-map-pin" data-target="day-3" style="top: 90%; left: 44%;">
                 <span class="pin-text">3</span>
                 <svg class="pin-car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 14h14M3 8h11M14 8l3 6h4v4h-3M3 8v10h2M16 11v-3M3 8C3 7 4 6 5 6h9l2 2v3"></path><circle cx="7" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg>
                 <span class="pin-label">Sossusvlei</span>
             </div>
-            <div class="lux-map-pin" data-target="day-5" style="top: 46%; left: 20%;">
+            <div class="lux-map-pin" data-target="day-5" style="top: 64%; left: 29%;">
                 <span class="pin-text">4</span>
                 <svg class="pin-car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 14h14M3 8h11M14 8l3 6h4v4h-3M3 8v10h2M16 11v-3M3 8C3 7 4 6 5 6h9l2 2v3"></path><circle cx="7" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg>
                 <span class="pin-label">Swakopmund</span>
             </div>
-            <div class="lux-map-pin" data-target="day-7" style="top: 31%; left: 23%;">
+            <div class="lux-map-pin" data-target="day-7" style="top: 31%; left: 33.5%;">
                 <span class="pin-text">5</span>
                 <svg class="pin-car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 14h14M3 8h11M14 8l3 6h4v4h-3M3 8v10h2M16 11v-3M3 8C3 7 4 6 5 6h9l2 2v3"></path><circle cx="7" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg>
                 <span class="pin-label">Damaraland</span>
             </div>
-            <div class="lux-map-pin" data-target="day-9" style="top: 22%; left: 37%;">
+            <div class="lux-map-pin" data-target="day-9" style="top: 18.5%; left: 44%;">
                 <span class="pin-text">6</span>
                 <svg class="pin-car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 14h14M3 8h11M14 8l3 6h4v4h-3M3 8v10h2M16 11v-3M3 8C3 7 4 6 5 6h9l2 2v3"></path><circle cx="7" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg>
                 <span class="pin-label">Etosha South</span>
             </div>
-            <div class="lux-map-pin" data-target="day-10" style="top: 19%; left: 45%;">
+            <div class="lux-map-pin" data-target="day-10" style="top: 11%; left: 58%;">
                 <span class="pin-text">7</span>
                 <svg class="pin-car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 14h14M3 8h11M14 8l3 6h4v4h-3M3 8v10h2M16 11v-3M3 8C3 7 4 6 5 6h9l2 2v3"></path><circle cx="7" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg>
                 <span class="pin-label">East Etosha</span>
             </div>
-            <div class="lux-map-pin" data-target="day-12" style="top: 34%; left: 40%;">
+            <div class="lux-map-pin" data-target="day-12" style="top: 37%; left: 54%;">
                 <span class="pin-text">8</span>
                 <svg class="pin-car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 14h14M3 8h11M14 8l3 6h4v4h-3M3 8v10h2M16 11v-3M3 8C3 7 4 6 5 6h9l2 2v3"></path><circle cx="7" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg>
                 <span class="pin-label">Otjiwa</span>
