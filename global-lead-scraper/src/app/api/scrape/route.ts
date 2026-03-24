@@ -17,7 +17,7 @@ export async function POST(req: Request) {
     const seenDomains = new Set();
 
     // 2. Async batch processing per result -- MUST be in parallel to beat Vercel's 10s timeout!
-    const processPromises = searchResults.slice(0, 10).map(async (result) => {
+    const processPromises = searchResults.slice(0, 10).map(async (result: any) => {
         try {
             const domainMatch = result.url.match(/https?:\/\/(?:www\.)?([^\/]+)/i);
             const domain = domainMatch ? domainMatch[1] : '';
