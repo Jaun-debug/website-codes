@@ -449,217 +449,239 @@
             animation: flashOrangeRight 1.5s infinite ease-in-out;
         }
     
- .lux-interactive-map-wrapper { display: none !important; } 
- .lux-day-location-wrapper { display: none !important; } 
- .lux-tour-layout { grid-template-columns: 1fr; max-width: 900px; margin: 0 auto; padding-right: 0;} 
- .lux-day-sidebar { position: static; height: auto; margin-bottom: 2rem; } 
+ .lux-interactive-map { display: none !important; } 
 
     </style>
 </head>
 <body>
 
-    <div class="lux-itinerary-container">
+    <div class="lux-container">
         
-        <!-- HERO SECTION -->
-        <div class="lux-hero" style="background-image: url('https://wetu.com/ImageHandler/c1920x1080/Itineraries/68CC8584-DA8B-4229-8369-2F2C40EFB082/dscf4039-enhanced-nr.jpeg');">
-            <div class="lux-hero-overlay"></div>
+        <!-- RIGHT SIDE: Sticky Hero -->
+        <div class="lux-left" style="background-image: url('https://wetu.com/ImageHandler/c1920x1080/Itineraries/68CC8584-DA8B-4229-8369-2F2C40EFB082/dscf4039-enhanced-nr.jpeg');">
+            <div class="lux-overlay"></div>
             <div class="lux-hero-content">
-                <span class="lux-eyebrow">PREMIUM ITINERARY</span>
-                <h1 class="lux-title"> 2025 11-DAY<br><span class="lux-subtitle"> SOUTH OF NAMIBIA (STANDARD) S/D</span></h1>
+                <span class="lux-tag-small">DESERT TRACKS EXCLUSIVE</span>
+                <h1 class="lux-title"> 2025 11-DAY SOUTH<br>OF NAMIBIA (STANDARD) S/D</h1>
+                <p class="lux-subtitle">A bespoke luxury journey through legendary landscapes.</p>
             </div>
+            
+            <div class="lux-interactive-map" id="itineraryMap"></div>
         </div>
 
-        <!-- MAIN LAYOUT -->
-        <div class="lux-tour-layout">
+        <!-- LEFT SIDE: Scrollable Feed -->
+        <div class="lux-right">
             
-            <!-- LEFT COLUMN: Day by Day -->
-            <div class="lux-itinerary-feed">
-                <p class="lux-intro">
-                    Prepare for an unforgettable adventure. This exclusive journey takes you through iconic landscapes, blending adventure and ultimate relaxation at every turn.
-                </p>
+            <div class="lux-welcome-tag">Welcome</div>
+            <p class="lux-intro">
+                Prepare for an unforgettable adventure. This exclusive journey takes you through iconic landscapes, blending adventure and ultimate relaxation at every turn.
+            </p>
 
-                
-        <!-- DAY BLOCK 00 -->
-        <div class="lux-day-block" id="day-00" data-day="day-00">
-            <div class="lux-day-sidebar">
-                <span class="lux-day-numeral">00</span>
-                <div class="lux-day-location">
-                    <span class="lux-location-eyebrow">INTU AFRIKA KALAHARI GAME RESERVE — CAMELTHORN KALAHARI LODGE</span>
-                    <span class="lux-location-name">Intu Afrika Kalahari Game Reserve</span>
-                </div>
+            
+        <!-- DAY BLOCK 01 -->
+        <div class="lux-day-block" id="day-01" data-day="day-01">
+            <div class="lux-day-number-row">
+                <span class="lux-day-numeral">01</span>
+                <div class="lux-day-line"></div>
             </div>
-            <div class="lux-day-content">
-                <h3 class="lux-day-title">Arrival in Intu Afrika Kalahari Game Reserve</h3>
-                <p class="lux-day-desc">
-                    Discover the vast, silent majesty of the Kalahari Desert, where red sand dunes glow under endless horizons and unique wildlife roams freely.
-                </p>
-                <div class="lux-carousel-wrapper">
-                    <div class="lux-carousel">
-                        <img src="https://wetu.com/ImageHandler/c1920x1080/257973/intu_afrika_kalahari_game_reserve-istock-1208139896_b.jpg" alt="Intu Afrika Kalahari Game Reserve - Camelthorn Kalahari Lodge" loading="lazy">
-<img src="https://wetu.com/ImageHandler/c1920x1080/20344/camelthorn_breakfast2.jpg" alt="Intu Afrika Kalahari Game Reserve - Camelthorn Kalahari Lodge" loading="lazy">
-<img src="https://wetu.com/ImageHandler/c1920x1080/20344/camelthorn_table_pool3.jpg" alt="Intu Afrika Kalahari Game Reserve - Camelthorn Kalahari Lodge" loading="lazy">
-<img src="https://wetu.com/ImageHandler/c1920x1080/20344/camelthorn_boma_dinner11.jpg" alt="Intu Afrika Kalahari Game Reserve - Camelthorn Kalahari Lodge" loading="lazy">
+            
+            <div class="lux-day-location-wrapper">
+                <span class="lux-day-location">INTU AFRIKA KALAHARI GAME RESERVE — CAMELTHORN KALAHARI LODGE</span>
+            </div>
 
-                    </div>
-                    <div class="lux-carousel-hint">Swipe to explore →</div>
+            <h3 class="lux-day-title">Arrival in Intu Afrika Kalahari Game Reserve</h3>
+            <p class="lux-day-desc">
+                Discover the vast, silent majesty of the Kalahari Desert, where red sand dunes glow under endless horizons. Take in the sweeping views and observe unique desert-adapted wildlife roaming freely through the arid bushveld.
+            </p>
+            <div class="lux-carousel-wrapper">
+                <div class="lux-carousel">
+                    <img src="https://wetu.com/ImageHandler/c1920x1080/257973/intu_afrika_kalahari_game_reserve-istock-1208139896_b.jpg" alt="Intu Afrika Kalahari Game Reserve - Camelthorn Kalahari Lodge" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/20344/camelthorn_breakfast2.jpg" alt="Intu Afrika Kalahari Game Reserve - Camelthorn Kalahari Lodge" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/20344/camelthorn_table_pool3.jpg" alt="Intu Afrika Kalahari Game Reserve - Camelthorn Kalahari Lodge" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/20344/camelthorn_boma_dinner11.jpg" alt="Intu Afrika Kalahari Game Reserve - Camelthorn Kalahari Lodge" loading="lazy">
+                        
+                </div>
+                <div class="lux-scroll-hint">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
                 </div>
             </div>
         </div>
         
         <!-- DAY BLOCK 02 -->
         <div class="lux-day-block" id="day-02" data-day="day-02">
-            <div class="lux-day-sidebar">
+            <div class="lux-day-number-row">
                 <span class="lux-day-numeral">02</span>
-                <div class="lux-day-location">
-                    <span class="lux-location-eyebrow">FISH RIVER CANYON — CANYON ROADHOUSE GONDWANA COLLECTION NAMIBIA</span>
-                    <span class="lux-location-name">Fish River Canyon</span>
+                <div class="lux-day-line"></div>
+            </div>
+            
+            <div class="lux-day-location-wrapper">
+                <span class="lux-day-location">FISH RIVER CANYON — CANYON ROADHOUSE GONDWANA COLLECTION NAMIBIA</span>
+            </div>
+
+            <h3 class="lux-day-title">Arrival in Fish River Canyon</h3>
+            <p class="lux-day-desc">
+                Surrender to the untamed beauty of the African wilderness. Let the rhythm of nature guide your days as you explore breathtaking landscapes, encounter iconic wildlife, and rest in absolute opulent comfort.
+            </p>
+            <div class="lux-carousel-wrapper">
+                <div class="lux-carousel">
+                    <img src="https://wetu.com/ImageHandler/c1920x1080/472/fish_river_canyon-istock-639206242_b.jpg" alt="Fish River Canyon - Canyon Roadhouse Gondwana Collection Namibia" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/4033/roadhouse2_2.jpg" alt="Fish River Canyon - Canyon Roadhouse Gondwana Collection Namibia" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/4033/2017_12_namibia-72772.jpg" alt="Fish River Canyon - Canyon Roadhouse Gondwana Collection Namibia" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/4033/roadhouse18.jpg" alt="Fish River Canyon - Canyon Roadhouse Gondwana Collection Namibia" loading="lazy">
+                        
+                </div>
+                <div class="lux-scroll-hint">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
                 </div>
             </div>
-            <div class="lux-day-content">
-                <h3 class="lux-day-title">Arrival in Fish River Canyon</h3>
-                <p class="lux-day-desc">
-                    Surrender to the untamed beauty of the African wilderness. Let the rhythm of nature guide your days as you explore breathtaking landscapes and rest in opulent comfort.
-                </p>
-                <div class="lux-carousel-wrapper">
-                    <div class="lux-carousel">
-                        <img src="https://wetu.com/ImageHandler/c1920x1080/472/fish_river_canyon-istock-639206242_b.jpg" alt="Fish River Canyon - Canyon Roadhouse Gondwana Collection Namibia" loading="lazy">
-<img src="https://wetu.com/ImageHandler/c1920x1080/4033/roadhouse2_2.jpg" alt="Fish River Canyon - Canyon Roadhouse Gondwana Collection Namibia" loading="lazy">
-<img src="https://wetu.com/ImageHandler/c1920x1080/4033/2017_12_namibia-72772.jpg" alt="Fish River Canyon - Canyon Roadhouse Gondwana Collection Namibia" loading="lazy">
-<img src="https://wetu.com/ImageHandler/c1920x1080/4033/roadhouse18.jpg" alt="Fish River Canyon - Canyon Roadhouse Gondwana Collection Namibia" loading="lazy">
+        </div>
+        
+        <!-- DAY BLOCK 03 -->
+        <div class="lux-day-block" id="day-03" data-day="day-03">
+            <div class="lux-day-number-row">
+                <span class="lux-day-numeral">03</span>
+                <div class="lux-day-line"></div>
+            </div>
+            
+            <div class="lux-day-location-wrapper">
+                <span class="lux-day-location">LUDERITZ — ALTE VILLA</span>
+            </div>
 
-                    </div>
-                    <div class="lux-carousel-hint">Swipe to explore →</div>
+            <h3 class="lux-day-title">Arrival in Luderitz</h3>
+            <p class="lux-day-desc">
+                Surrender to the untamed beauty of the African wilderness. Let the rhythm of nature guide your days as you explore breathtaking landscapes, encounter iconic wildlife, and rest in absolute opulent comfort.
+            </p>
+            <div class="lux-carousel-wrapper">
+                <div class="lux-carousel">
+                    <img src="https://wetu.com/ImageHandler/c1920x1080/473/luderitz-istock-174951107_b.jpg" alt="Luderitz - Alte Villa" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/68363/1.jpg" alt="Luderitz - Alte Villa" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/68363/2.jpg" alt="Luderitz - Alte Villa" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/68363/3.jpg" alt="Luderitz - Alte Villa" loading="lazy">
+                        
+                </div>
+                <div class="lux-scroll-hint">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
                 </div>
             </div>
         </div>
         
         <!-- DAY BLOCK 04 -->
         <div class="lux-day-block" id="day-04" data-day="day-04">
-            <div class="lux-day-sidebar">
+            <div class="lux-day-number-row">
                 <span class="lux-day-numeral">04</span>
-                <div class="lux-day-location">
-                    <span class="lux-location-eyebrow">LUDERITZ — ALTE VILLA</span>
-                    <span class="lux-location-name">Luderitz</span>
+                <div class="lux-day-line"></div>
+            </div>
+            
+            <div class="lux-day-location-wrapper">
+                <span class="lux-day-location">NAMIB — AT KRONENHOF LODGE</span>
+            </div>
+
+            <h3 class="lux-day-title">Arrival in Namib</h3>
+            <p class="lux-day-desc">
+                Surrender to the untamed beauty of the African wilderness. Let the rhythm of nature guide your days as you explore breathtaking landscapes, encounter iconic wildlife, and rest in absolute opulent comfort.
+            </p>
+            <div class="lux-carousel-wrapper">
+                <div class="lux-carousel">
+                    <img src="https://wetu.com/ImageHandler/c1920x1080/37314/namib-shutterstock-591862676_b.jpg" alt="Namib - At Kronenhof Lodge" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/235399/20220206_194335.jpg" alt="Namib - At Kronenhof Lodge" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/235399/20220206_193441.jpg" alt="Namib - At Kronenhof Lodge" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/235399/ds_img_0009_002.jpg" alt="Namib - At Kronenhof Lodge" loading="lazy">
+                        
+                </div>
+                <div class="lux-scroll-hint">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
                 </div>
             </div>
-            <div class="lux-day-content">
-                <h3 class="lux-day-title">Arrival in Luderitz</h3>
-                <p class="lux-day-desc">
-                    Surrender to the untamed beauty of the African wilderness. Let the rhythm of nature guide your days as you explore breathtaking landscapes and rest in opulent comfort.
-                </p>
-                <div class="lux-carousel-wrapper">
-                    <div class="lux-carousel">
-                        <img src="https://wetu.com/ImageHandler/c1920x1080/473/luderitz-istock-174951107_b.jpg" alt="Luderitz - Alte Villa" loading="lazy">
-<img src="https://wetu.com/ImageHandler/c1920x1080/68363/1.jpg" alt="Luderitz - Alte Villa" loading="lazy">
-<img src="https://wetu.com/ImageHandler/c1920x1080/68363/2.jpg" alt="Luderitz - Alte Villa" loading="lazy">
-<img src="https://wetu.com/ImageHandler/c1920x1080/68363/3.jpg" alt="Luderitz - Alte Villa" loading="lazy">
+        </div>
+        
+        <!-- DAY BLOCK 05 -->
+        <div class="lux-day-block" id="day-05" data-day="day-05">
+            <div class="lux-day-number-row">
+                <span class="lux-day-numeral">05</span>
+                <div class="lux-day-line"></div>
+            </div>
+            
+            <div class="lux-day-location-wrapper">
+                <span class="lux-day-location">SOSSUSVLEI — DESERT HOMESTEAD LODGE</span>
+            </div>
 
-                    </div>
-                    <div class="lux-carousel-hint">Swipe to explore →</div>
+            <h3 class="lux-day-title">Arrival in Sossusvlei</h3>
+            <p class="lux-day-desc">
+                Immerse yourself in the surreal beauty of Sossusvlei. Towering crimson dunes contrast starkly against blinding white salt pans. Rise early to climb the iconic Dune 45 and marvel at the hauntingly beautiful, petrified trees of Deadvlei.
+            </p>
+            <div class="lux-carousel-wrapper">
+                <div class="lux-carousel">
+                    <img src="https://wetu.com/ImageHandler/c1920x1080/468/Sossus_C.jpg" alt="Sossusvlei - Desert Homestead Lodge" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/10515/ondili_desert_homestead_venture_media--23.jpg" alt="Sossusvlei - Desert Homestead Lodge" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/10515/img_6924.jpg" alt="Sossusvlei - Desert Homestead Lodge" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/10515/img_5262.jpg" alt="Sossusvlei - Desert Homestead Lodge" loading="lazy">
+                        
+                </div>
+                <div class="lux-scroll-hint">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
                 </div>
             </div>
         </div>
         
         <!-- DAY BLOCK 06 -->
         <div class="lux-day-block" id="day-06" data-day="day-06">
-            <div class="lux-day-sidebar">
+            <div class="lux-day-number-row">
                 <span class="lux-day-numeral">06</span>
-                <div class="lux-day-location">
-                    <span class="lux-location-eyebrow">NAMIB — AT KRONENHOF LODGE</span>
-                    <span class="lux-location-name">Namib</span>
-                </div>
+                <div class="lux-day-line"></div>
             </div>
-            <div class="lux-day-content">
-                <h3 class="lux-day-title">Arrival in Namib</h3>
-                <p class="lux-day-desc">
-                    Surrender to the untamed beauty of the African wilderness. Let the rhythm of nature guide your days as you explore breathtaking landscapes and rest in opulent comfort.
-                </p>
-                <div class="lux-carousel-wrapper">
-                    <div class="lux-carousel">
-                        <img src="https://wetu.com/ImageHandler/c1920x1080/37314/namib-shutterstock-591862676_b.jpg" alt="Namib - At Kronenhof Lodge" loading="lazy">
-<img src="https://wetu.com/ImageHandler/c1920x1080/235399/20220206_194335.jpg" alt="Namib - At Kronenhof Lodge" loading="lazy">
-<img src="https://wetu.com/ImageHandler/c1920x1080/235399/20220206_193441.jpg" alt="Namib - At Kronenhof Lodge" loading="lazy">
-<img src="https://wetu.com/ImageHandler/c1920x1080/235399/ds_img_0009_002.jpg" alt="Namib - At Kronenhof Lodge" loading="lazy">
+            
+            <div class="lux-day-location-wrapper">
+                <span class="lux-day-location">WINDHOEK — THE WINDHOEK LUXURY SUITES</span>
+            </div>
 
-                    </div>
-                    <div class="lux-carousel-hint">Swipe to explore →</div>
+            <h3 class="lux-day-title">Arrival in Windhoek</h3>
+            <p class="lux-day-desc">
+                Experience the vibrant heart of Namibia in Windhoek, a city where modern luxury meets rich history. Settle into your boutique guesthouse and unwind after your travels. Tomorrow, your grand safari begins.
+            </p>
+            <div class="lux-carousel-wrapper">
+                <div class="lux-carousel">
+                    <img src="https://wetu.com/ImageHandler/c1920x1080/1548/15491470_xl.jpg" alt="Windhoek - The Windhoek Luxury Suites" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/211198/2405_namibia_windhoek--8.jpg" alt="Windhoek - The Windhoek Luxury Suites" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/211198/the_windhoek_luxury_suites_352.jpeg" alt="Windhoek - The Windhoek Luxury Suites" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/211198/2405_namibia_stellenbosch-1004065_1.jpg" alt="Windhoek - The Windhoek Luxury Suites" loading="lazy">
+                        
+                </div>
+                <div class="lux-scroll-hint">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
                 </div>
             </div>
         </div>
         
-        <!-- DAY BLOCK 07 -->
-        <div class="lux-day-block" id="day-07" data-day="day-07">
-            <div class="lux-day-sidebar">
-                <span class="lux-day-numeral">07</span>
-                <div class="lux-day-location">
-                    <span class="lux-location-eyebrow">SOSSUSVLEI — DESERT HOMESTEAD LODGE</span>
-                    <span class="lux-location-name">Sossusvlei</span>
+            
+            <!-- OUTRO -->
+            <div class="lux-day-block">
+                <div class="lux-day-number-row">
+                    <span class="lux-day-numeral">--</span>
+                    <div class="lux-day-line"></div>
                 </div>
-            </div>
-            <div class="lux-day-content">
-                <h3 class="lux-day-title">Arrival in Sossusvlei</h3>
-                <p class="lux-day-desc">
-                    Immerse yourself in the surreal beauty of Sossusvlei. Towering crimson dunes contrast against stark white pans, creating an unforgettable luxury desert experience.
-                </p>
-                <div class="lux-carousel-wrapper">
-                    <div class="lux-carousel">
-                        <img src="https://wetu.com/ImageHandler/c1920x1080/468/Sossus_C.jpg" alt="Sossusvlei - Desert Homestead Lodge" loading="lazy">
-<img src="https://wetu.com/ImageHandler/c1920x1080/10515/ondili_desert_homestead_venture_media--23.jpg" alt="Sossusvlei - Desert Homestead Lodge" loading="lazy">
-<img src="https://wetu.com/ImageHandler/c1920x1080/10515/img_6924.jpg" alt="Sossusvlei - Desert Homestead Lodge" loading="lazy">
-<img src="https://wetu.com/ImageHandler/c1920x1080/10515/img_5262.jpg" alt="Sossusvlei - Desert Homestead Lodge" loading="lazy">
-
-                    </div>
-                    <div class="lux-carousel-hint">Swipe to explore →</div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- DAY BLOCK 09 -->
-        <div class="lux-day-block" id="day-09" data-day="day-09">
-            <div class="lux-day-sidebar">
-                <span class="lux-day-numeral">09</span>
-                <div class="lux-day-location">
-                    <span class="lux-location-eyebrow">WINDHOEK — THE WINDHOEK LUXURY SUITES</span>
-                    <span class="lux-location-name">Windhoek</span>
-                </div>
-            </div>
-            <div class="lux-day-content">
-                <h3 class="lux-day-title">Arrival in Windhoek</h3>
-                <p class="lux-day-desc">
-                    Experience the vibrant heart of Namibia in Windhoek, a city where modern luxury meets rich history. Rest in boutique comfort before your grand safari begins.
-                </p>
-                <div class="lux-carousel-wrapper">
-                    <div class="lux-carousel">
-                        <img src="https://wetu.com/ImageHandler/c1920x1080/1548/15491470_xl.jpg" alt="Windhoek - The Windhoek Luxury Suites" loading="lazy">
-<img src="https://wetu.com/ImageHandler/c1920x1080/211198/2405_namibia_windhoek--8.jpg" alt="Windhoek - The Windhoek Luxury Suites" loading="lazy">
-<img src="https://wetu.com/ImageHandler/c1920x1080/211198/the_windhoek_luxury_suites_352.jpeg" alt="Windhoek - The Windhoek Luxury Suites" loading="lazy">
-<img src="https://wetu.com/ImageHandler/c1920x1080/211198/2405_namibia_stellenbosch-1004065_1.jpg" alt="Windhoek - The Windhoek Luxury Suites" loading="lazy">
-
-                    </div>
-                    <div class="lux-carousel-hint">Swipe to explore →</div>
-                </div>
-            </div>
-        </div>
-        
                 
-                <!-- OUTRO -->
-                <div class="lux-day-block">
-                    <div class="lux-day-sidebar">
-                        <span class="lux-day-numeral">--</span>
-                        <div class="lux-day-location">
-                            <span class="lux-location-eyebrow">DEPARTURE</span>
-                            <span class="lux-location-name">End of Journey</span>
-                        </div>
-                    </div>
-                    <div class="lux-day-content">
-                        <h3 class="lux-day-title">Departure Bound</h3>
-                        <p class="lux-day-desc">
-                            After a breathtaking final morning, make your way back down for your departure. Journey safely and take home an eternity of memories.
-                        </p>
-                    </div>
+                <div class="lux-day-location-wrapper">
+                    <span class="lux-day-location">DEPARTURE — SAFARI CONCLUSION</span>
                 </div>
 
+                <h3 class="lux-day-title">Departure Bound</h3>
+                <p class="lux-day-desc">
+                    After a breathtaking final morning, make your way back down for your departure. Journey safely and take home an eternity of beautiful memories.
+                </p>
             </div>
+
         </div>
     </div>
 </body>
