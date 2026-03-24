@@ -80,23 +80,23 @@
 
         /* Interactive Map Widget */
         .lux-interactive-map {
-            /* Mobile configuration: floats over the screen like a HUD */
+            /* Mobile configuration: snaps perfectly to the top screen, pushing header out of sight! */
             position: fixed; 
-            top: 20vh;
-            left: 5vw;
-            width: 90vw;
+            top: 0;
+            left: 0;
+            width: 100vw;
             height: 60vh;
             background: rgba(248, 243, 235, 0.45); 
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             border: none;
-            border-radius: 8px;
+            border-radius: 0; /* Flat edges for full-screen header effect */
             overflow: hidden;
             box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-            z-index: 100;
+            z-index: 999999; /* Higher than WP headers to push them back */
             opacity: 0;
             visibility: hidden;
-            transform: translateY(20px);
+            transform: translateY(-20px); /* slide in from top */
             transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);
             pointer-events: none; /* allow scrolling underneath on mobile */
         }
@@ -117,7 +117,8 @@
                 width: 320px;
                 height: 480px;
                 z-index: 10;
-                transform: translateX(20px);
+                border-radius: 8px; /* Restore rounded corners for desktop */
+                transform: translateX(20px); /* slide in from right */
                 pointer-events: auto;
             }
             .lux-interactive-map.is-visible {
@@ -398,8 +399,8 @@
         
         <!-- Interactive Map Widget Overlay (Appears on scroll) -->
         <div class="lux-interactive-map">
-            <!-- Authentic Namibia Map Background -->
-            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Namibia_relief_location_map.jpg" alt="Namibia Map Route" class="map-bg">
+            <!-- Authentic Namibia Map Background (Replace with WP media URL when live) -->
+            <img src="https://website-codes-vert.vercel.app/custom_map.jpg" alt="Namibia Map Route" class="map-bg">
             
             <!-- Map Pins (Approximate layout matching the Wetu loop) -->
             <div class="lux-map-pin" data-target="day-1 day-14" style="top: 55%; left: 47%;">
