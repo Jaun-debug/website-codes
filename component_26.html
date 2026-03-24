@@ -448,7 +448,7 @@
             height: 24px;
             animation: flashOrangeRight 1.5s infinite ease-in-out;
         }
-    \n .lux-interactive-map { display: none !important; } \n html { scroll-behavior: smooth; } \n .lux-left.swapping { opacity: 0.4; transform: translateX(-30px); } \n .lux-left, .lux-title, .lux-subtitle { transition: all 0.9s cubic-bezier(0.25, 1, 0.5, 1); } \n .lux-carousel { scroll-behavior: smooth; } \n .lux-scroll-hint svg { transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); } \n .lux-scroll-hint.scrolled-end .back-text { opacity: 1; } \n
+    \n .lux-interactive-map { display: none !important; } \n html { scroll-behavior: smooth; } \n .lux-hero-bg { position: absolute; top:0; left:0; width:100%; height:100%; background-size: cover; background-position: center; transition: opacity 2s ease; opacity: 0; z-index: 0; } \n .lux-hero-bg.active { opacity: 1; } \n .lux-overlay, .lux-hero-content { position: relative; z-index: 2; } \n .lux-title, .lux-subtitle { transition: opacity 0.8s ease; } \n .lux-carousel { scroll-behavior: smooth; } \n
     </style>
     <!-- Premium Smooth Scroll Library (Lenis) for luxurious itinerary scrolling -->
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
@@ -458,15 +458,17 @@
     <div class="lux-container">
         
         <!-- RIGHT SIDE: Sticky Hero -->
-        <!-- Note: We store the default hero image so we can reset it if we scroll to the top -->
-        <div class="lux-left" id="stickyHero" data-default-title="2025 17-DAY NAMIBIA, CHOBE &amp;<br>VIC FALLS SAFARI (STANDARD) S/D" data-default-bg="https://wetu.com/ImageHandler/c1920x1080/1548/windhoek.jpg" style="background-image: url('https://wetu.com/ImageHandler/c1920x1080/1548/windhoek.jpg');">
+        <div class="lux-left" id="stickyHero" data-default-title="2025 17-DAY NAMIBIA, CHOBE &amp;<br>VIC FALLS SAFARI (STANDARD) S/D" data-default-bg="https://wetu.com/ImageHandler/c1920x1080/1548/windhoek.jpg">
+            <!-- Crossfade BG Layers! -->
+            <div class="lux-hero-bg active" id="luxHeroBg1" style="background-image: url('https://wetu.com/ImageHandler/c1920x1080/1548/windhoek.jpg');"></div>
+            <div class="lux-hero-bg" id="luxHeroBg2" style="background-image: url('https://wetu.com/ImageHandler/c1920x1080/1548/windhoek.jpg');"></div>
+
             <div class="lux-overlay"></div>
             <div class="lux-hero-content">
                 <span class="lux-tag-small">DESERT TRACKS EXCLUSIVE</span>
                 <h1 class="lux-title" id="stickyTitle">2025 17-DAY NAMIBIA, CHOBE &amp;<br>VIC FALLS SAFARI (STANDARD) S/D</h1>
                 <p class="lux-subtitle" id="stickySubtitle">A bespoke luxury journey through legendary landscapes.</p>
             </div>
-            
             <div class="lux-interactive-map" id="itineraryMap"></div>
         </div>
 
@@ -480,7 +482,7 @@
 
             
         <!-- DAY BLOCK 01 -->
-        <div class="lux-day-block" id="day-01" data-day="day-01" data-bg="https://wetu.com/ImageHandler/c1920x1080/1548/15491470_xl.jpg" data-region="Windhoek">
+        <div class="lux-day-block" id="day-01" data-day="day-01" data-bg="https://wetu.com/ImageHandler/c1920x1080/55342/143a4578.jpg" data-region="Windhoek">
             <div class="lux-day-number-row">
                 <span class="lux-day-numeral">01</span>
                 <div class="lux-day-line"></div>
@@ -496,22 +498,26 @@
             </p>
             <div class="lux-carousel-wrapper">
                 <div class="lux-carousel">
-                    <img src="https://wetu.com/ImageHandler/c1920x1080/55342/143a4578.jpg" alt="Windhoek - Ti Melen Boutique Guesthouse" loading="lazy">
-                        <img src="https://wetu.com/ImageHandler/c1920x1080/55342/img_4373.jpg" alt="Windhoek - Ti Melen Boutique Guesthouse" loading="lazy">
+                    <img src="https://wetu.com/ImageHandler/c1920x1080/55342/img_4373.jpg" alt="Windhoek - Ti Melen Boutique Guesthouse" loading="lazy">
                         <img src="https://wetu.com/ImageHandler/c1920x1080/55342/img_43721.jpg" alt="Windhoek - Ti Melen Boutique Guesthouse" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/55342/img_4408.jpg" alt="Windhoek - Ti Melen Boutique Guesthouse" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/55342/img_44211.jpg" alt="Windhoek - Ti Melen Boutique Guesthouse" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/55342/img_7922.jpg" alt="Windhoek - Ti Melen Boutique Guesthouse" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/55342/2016_ti_melen_51.jpg" alt="Windhoek - Ti Melen Boutique Guesthouse" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/55342/2016_ti_melen_4.jpg" alt="Windhoek - Ti Melen Boutique Guesthouse" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/55342/2016_ti_melen_61.jpg" alt="Windhoek - Ti Melen Boutique Guesthouse" loading="lazy">
                         
                 </div>
-                <div class="lux-scroll-hint" style="cursor: pointer;" title="Back to Start">
+                <div class="lux-scroll-hint" style="cursor: pointer;" title="Next Photo">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                    <span class="back-text" style="font-size: 0.65rem; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; margin-left: 6px; opacity: 0; transition: opacity 0.3s; color: #d87a4d;">Back</span>
                 </div>
             </div>
         </div>
         
         <!-- DAY BLOCK 02 -->
-        <div class="lux-day-block" id="day-02" data-day="day-02" data-bg="https://wetu.com/ImageHandler/c1920x1080/468/Sossus_C.jpg" data-region="Sossusvlei">
+        <div class="lux-day-block" id="day-02" data-day="day-02" data-bg="https://wetu.com/ImageHandler/c1920x1080/10515/ondili_desert_homestead_venture_media--23.jpg" data-region="Sossusvlei">
             <div class="lux-day-number-row">
                 <span class="lux-day-numeral">02</span>
                 <div class="lux-day-line"></div>
@@ -527,22 +533,26 @@
             </p>
             <div class="lux-carousel-wrapper">
                 <div class="lux-carousel">
-                    <img src="https://wetu.com/ImageHandler/c1920x1080/10515/ondili_desert_homestead_venture_media--23.jpg" alt="Sossusvlei - Desert Homestead Lodge" loading="lazy">
-                        <img src="https://wetu.com/ImageHandler/c1920x1080/10515/img_6924.jpg" alt="Sossusvlei - Desert Homestead Lodge" loading="lazy">
+                    <img src="https://wetu.com/ImageHandler/c1920x1080/10515/img_6924.jpg" alt="Sossusvlei - Desert Homestead Lodge" loading="lazy">
                         <img src="https://wetu.com/ImageHandler/c1920x1080/10515/img_5262.jpg" alt="Sossusvlei - Desert Homestead Lodge" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/10515/2016_desert_homestead_lodge_reiterhaus_5.jpg" alt="Sossusvlei - Desert Homestead Lodge" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/10515/img_68201.jpg" alt="Sossusvlei - Desert Homestead Lodge" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/10515/img_68961.jpg" alt="Sossusvlei - Desert Homestead Lodge" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/10515/img_68891.jpg" alt="Sossusvlei - Desert Homestead Lodge" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/10515/ondili_desert_homestead_venture_media-0012.jpg" alt="Sossusvlei - Desert Homestead Lodge" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/10515/ondili_desert_homestead_venture_media-62053.jpg" alt="Sossusvlei - Desert Homestead Lodge" loading="lazy">
                         
                 </div>
-                <div class="lux-scroll-hint" style="cursor: pointer;" title="Back to Start">
+                <div class="lux-scroll-hint" style="cursor: pointer;" title="Next Photo">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                    <span class="back-text" style="font-size: 0.65rem; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; margin-left: 6px; opacity: 0; transition: opacity 0.3s; color: #d87a4d;">Back</span>
                 </div>
             </div>
         </div>
         
         <!-- DAY BLOCK 03 -->
-        <div class="lux-day-block" id="day-03" data-day="day-03" data-bg="https://wetu.com/ImageHandler/c1920x1080/471/Swakop_1.jpg" data-region="Swakopmund">
+        <div class="lux-day-block" id="day-03" data-day="day-03" data-bg="https://wetu.com/ImageHandler/c1920x1080/47749/sls__family_room1.jpg" data-region="Swakopmund">
             <div class="lux-day-number-row">
                 <span class="lux-day-numeral">03</span>
                 <div class="lux-day-line"></div>
@@ -558,22 +568,26 @@
             </p>
             <div class="lux-carousel-wrapper">
                 <div class="lux-carousel">
-                    <img src="https://wetu.com/ImageHandler/c1920x1080/47749/sls__family_room1.jpg" alt="Swakopmund - Swakopmund Luxury Suites" loading="lazy">
-                        <img src="https://wetu.com/ImageHandler/c1920x1080/47749/honeymoon_21.jpg" alt="Swakopmund - Swakopmund Luxury Suites" loading="lazy">
+                    <img src="https://wetu.com/ImageHandler/c1920x1080/47749/honeymoon_21.jpg" alt="Swakopmund - Swakopmund Luxury Suites" loading="lazy">
                         <img src="https://wetu.com/ImageHandler/c1920x1080/47749/honeymoon_5.jpg" alt="Swakopmund - Swakopmund Luxury Suites" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/47749/standard_beach_3.jpg" alt="Swakopmund - Swakopmund Luxury Suites" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/47749/family_4.jpg" alt="Swakopmund - Swakopmund Luxury Suites" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/47749/standard_grey_1.jpg" alt="Swakopmund - Swakopmund Luxury Suites" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/47749/luxury_room.jpg" alt="Swakopmund - Swakopmund Luxury Suites" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/47749/sls__family_room11.jpg" alt="Swakopmund - Swakopmund Luxury Suites" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/47749/honeymoon_51.jpg" alt="Swakopmund - Swakopmund Luxury Suites" loading="lazy">
                         
                 </div>
-                <div class="lux-scroll-hint" style="cursor: pointer;" title="Back to Start">
+                <div class="lux-scroll-hint" style="cursor: pointer;" title="Next Photo">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                    <span class="back-text" style="font-size: 0.65rem; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; margin-left: 6px; opacity: 0; transition: opacity 0.3s; color: #d87a4d;">Back</span>
                 </div>
             </div>
         </div>
         
         <!-- DAY BLOCK 04 -->
-        <div class="lux-day-block" id="day-04" data-day="day-04" data-bg="https://wetu.com/ImageHandler/c1920x1080/1551/spitzkoppe-istock-1126135704_b.jpg" data-region="Spitzkoppe">
+        <div class="lux-day-block" id="day-04" data-day="day-04" data-bg="https://wetu.com/ImageHandler/c1920x1080/101058/1.jpeg" data-region="Spitzkoppe">
             <div class="lux-day-number-row">
                 <span class="lux-day-numeral">04</span>
                 <div class="lux-day-line"></div>
@@ -589,22 +603,23 @@
             </p>
             <div class="lux-carousel-wrapper">
                 <div class="lux-carousel">
-                    <img src="https://wetu.com/ImageHandler/c1920x1080/101058/1.jpeg" alt="Spitzkoppe - Spitzkoppen Lodge" loading="lazy">
-                        <img src="https://wetu.com/ImageHandler/c1920x1080/101058/2.jpeg" alt="Spitzkoppe - Spitzkoppen Lodge" loading="lazy">
+                    <img src="https://wetu.com/ImageHandler/c1920x1080/101058/2.jpeg" alt="Spitzkoppe - Spitzkoppen Lodge" loading="lazy">
                         <img src="https://wetu.com/ImageHandler/c1920x1080/101058/3.jpeg" alt="Spitzkoppe - Spitzkoppen Lodge" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/101058/4.jpeg" alt="Spitzkoppe - Spitzkoppen Lodge" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/101058/5.jpeg" alt="Spitzkoppe - Spitzkoppen Lodge" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/101058/6.jpeg" alt="Spitzkoppe - Spitzkoppen Lodge" loading="lazy">
                         
                 </div>
-                <div class="lux-scroll-hint" style="cursor: pointer;" title="Back to Start">
+                <div class="lux-scroll-hint" style="cursor: pointer;" title="Next Photo">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                    <span class="back-text" style="font-size: 0.65rem; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; margin-left: 6px; opacity: 0; transition: opacity 0.3s; color: #d87a4d;">Back</span>
                 </div>
             </div>
         </div>
         
         <!-- DAY BLOCK 05 -->
-        <div class="lux-day-block" id="day-05" data-day="day-05" data-bg="https://wetu.com/ImageHandler/c1920x1080/123643/etosha_7_c.jpg" data-region="Etosha South">
+        <div class="lux-day-block" id="day-05" data-day="day-05" data-bg="https://wetu.com/ImageHandler/c1920x1080/10560/etosha_game_drive1.jpg" data-region="Etosha South">
             <div class="lux-day-number-row">
                 <span class="lux-day-numeral">05</span>
                 <div class="lux-day-line"></div>
@@ -620,22 +635,26 @@
             </p>
             <div class="lux-carousel-wrapper">
                 <div class="lux-carousel">
-                    <img src="https://wetu.com/ImageHandler/c1920x1080/10560/etosha_game_drive1.jpg" alt="Etosha South - Etosha Safari Camp Gondwana Collection Namibia" loading="lazy">
-                        <img src="https://wetu.com/ImageHandler/c1920x1080/10560/dsc_9369.jpg" alt="Etosha South - Etosha Safari Camp Gondwana Collection Namibia" loading="lazy">
+                    <img src="https://wetu.com/ImageHandler/c1920x1080/10560/dsc_9369.jpg" alt="Etosha South - Etosha Safari Camp Gondwana Collection Namibia" loading="lazy">
                         <img src="https://wetu.com/ImageHandler/c1920x1080/10560/dsc_7303.jpg" alt="Etosha South - Etosha Safari Camp Gondwana Collection Namibia" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/10560/dsc_7278.jpg" alt="Etosha South - Etosha Safari Camp Gondwana Collection Namibia" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/10560/dsc_7284.jpg" alt="Etosha South - Etosha Safari Camp Gondwana Collection Namibia" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/10560/music.jpg" alt="Etosha South - Etosha Safari Camp Gondwana Collection Namibia" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/10560/etosha_safari_camp_game_drive1.jpg" alt="Etosha South - Etosha Safari Camp Gondwana Collection Namibia" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/10560/etosha_safari_camp_game_drive2.jpg" alt="Etosha South - Etosha Safari Camp Gondwana Collection Namibia" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/10560/dsc_68164.jpg" alt="Etosha South - Etosha Safari Camp Gondwana Collection Namibia" loading="lazy">
                         
                 </div>
-                <div class="lux-scroll-hint" style="cursor: pointer;" title="Back to Start">
+                <div class="lux-scroll-hint" style="cursor: pointer;" title="Next Photo">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                    <span class="back-text" style="font-size: 0.65rem; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; margin-left: 6px; opacity: 0; transition: opacity 0.3s; color: #d87a4d;">Back</span>
                 </div>
             </div>
         </div>
         
         <!-- DAY BLOCK 06 -->
-        <div class="lux-day-block" id="day-06" data-day="day-06" data-bg="https://wetu.com/ImageHandler/c1920x1080/72298/game_drive_at_onguma_1191_c.jpg" data-region="Onguma Nature Reserve">
+        <div class="lux-day-block" id="day-06" data-day="day-06" data-bg="https://wetu.com/ImageHandler/c1920x1080/8717/onguma_bush_camp_1098.jpg" data-region="Onguma Nature Reserve">
             <div class="lux-day-number-row">
                 <span class="lux-day-numeral">06</span>
                 <div class="lux-day-line"></div>
@@ -651,22 +670,26 @@
             </p>
             <div class="lux-carousel-wrapper">
                 <div class="lux-carousel">
-                    <img src="https://wetu.com/ImageHandler/c1920x1080/8717/onguma_bush_camp_1098.jpg" alt="Onguma Nature Reserve - Onguma Bush Camp" loading="lazy">
-                        <img src="https://wetu.com/ImageHandler/c1920x1080/8717/onguma_bush_camp_1117.jpg" alt="Onguma Nature Reserve - Onguma Bush Camp" loading="lazy">
+                    <img src="https://wetu.com/ImageHandler/c1920x1080/8717/onguma_bush_camp_1117.jpg" alt="Onguma Nature Reserve - Onguma Bush Camp" loading="lazy">
                         <img src="https://wetu.com/ImageHandler/c1920x1080/8717/5. Lounge 1.jpg" alt="Onguma Nature Reserve - Onguma Bush Camp" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/8717/11. Waterhole breakfast.jpg" alt="Onguma Nature Reserve - Onguma Bush Camp" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/8717/onguma_bush_camp_0991.jpg" alt="Onguma Nature Reserve - Onguma Bush Camp" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/8717/children_at_onguma_0809.jpg" alt="Onguma Nature Reserve - Onguma Bush Camp" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/8717/15. View_Waterhole Room interior.jpg" alt="Onguma Nature Reserve - Onguma Bush Camp" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/8717/d31g9127.jpg" alt="Onguma Nature Reserve - Onguma Bush Camp" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/8717/onguma_bush_camp_10041.jpg" alt="Onguma Nature Reserve - Onguma Bush Camp" loading="lazy">
                         
                 </div>
-                <div class="lux-scroll-hint" style="cursor: pointer;" title="Back to Start">
+                <div class="lux-scroll-hint" style="cursor: pointer;" title="Next Photo">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                    <span class="back-text" style="font-size: 0.65rem; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; margin-left: 6px; opacity: 0; transition: opacity 0.3s; color: #d87a4d;">Back</span>
                 </div>
             </div>
         </div>
         
         <!-- DAY BLOCK 07 -->
-        <div class="lux-day-block" id="day-07" data-day="day-07" data-bg="https://wetu.com/ImageHandler/c1920x1080/374995/shutterstock_1441819445_b.jpg" data-region="Bagani">
+        <div class="lux-day-block" id="day-07" data-day="day-07" data-bg="https://wetu.com/ImageHandler/c1920x1080/68333/home_0003_header.jpg" data-region="Bagani">
             <div class="lux-day-number-row">
                 <span class="lux-day-numeral">07</span>
                 <div class="lux-day-line"></div>
@@ -682,22 +705,23 @@
             </p>
             <div class="lux-carousel-wrapper">
                 <div class="lux-carousel">
-                    <img src="https://wetu.com/ImageHandler/c1920x1080/68333/home_0003_header.jpg" alt="Bagani - Shametu River Lodge" loading="lazy">
-                        <img src="https://wetu.com/ImageHandler/c1920x1080/68333/home_0007_header.jpg" alt="Bagani - Shametu River Lodge" loading="lazy">
+                    <img src="https://wetu.com/ImageHandler/c1920x1080/68333/home_0007_header.jpg" alt="Bagani - Shametu River Lodge" loading="lazy">
                         <img src="https://wetu.com/ImageHandler/c1920x1080/68333/eueijtbe-7da270fc54.jpg" alt="Bagani - Shametu River Lodge" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/68333/dsc_0170-595eb00698.jpg" alt="Bagani - Shametu River Lodge" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/68333/family-rooms-1eab530c09.jpg" alt="Bagani - Shametu River Lodge" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/68333/img_6160.jpg" alt="Bagani - Shametu River Lodge" loading="lazy">
                         
                 </div>
-                <div class="lux-scroll-hint" style="cursor: pointer;" title="Back to Start">
+                <div class="lux-scroll-hint" style="cursor: pointer;" title="Next Photo">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                    <span class="back-text" style="font-size: 0.65rem; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; margin-left: 6px; opacity: 0; transition: opacity 0.3s; color: #d87a4d;">Back</span>
                 </div>
             </div>
         </div>
         
         <!-- DAY BLOCK 08 -->
-        <div class="lux-day-block" id="day-08" data-day="day-08" data-bg="https://wetu.com/ImageHandler/c1920x1080/37307/kwando_river-shutterstock-1441819454_b.jpg" data-region="Kwando River">
+        <div class="lux-day-block" id="day-08" data-day="day-08" data-bg="https://wetu.com/ImageHandler/c1920x1080/15350/namushasha7.jpg" data-region="Kwando River">
             <div class="lux-day-number-row">
                 <span class="lux-day-numeral">08</span>
                 <div class="lux-day-line"></div>
@@ -713,22 +737,26 @@
             </p>
             <div class="lux-carousel-wrapper">
                 <div class="lux-carousel">
-                    <img src="https://wetu.com/ImageHandler/c1920x1080/15350/namushasha7.jpg" alt="Kwando River - Namushasha River Lodge Gondwana Collection Namibia" loading="lazy">
-                        <img src="https://wetu.com/ImageHandler/c1920x1080/15350/1732257446988_20240316_172940.jpg" alt="Kwando River - Namushasha River Lodge Gondwana Collection Namibia" loading="lazy">
+                    <img src="https://wetu.com/ImageHandler/c1920x1080/15350/1732257446988_20240316_172940.jpg" alt="Kwando River - Namushasha River Lodge Gondwana Collection Namibia" loading="lazy">
                         <img src="https://wetu.com/ImageHandler/c1920x1080/15350/_mg_4442.jpg" alt="Kwando River - Namushasha River Lodge Gondwana Collection Namibia" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/15350/namushasha21.jpg" alt="Kwando River - Namushasha River Lodge Gondwana Collection Namibia" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/15350/namushasha10.jpg" alt="Kwando River - Namushasha River Lodge Gondwana Collection Namibia" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/15350/DSC_38421.jpg" alt="Kwando River - Namushasha River Lodge Gondwana Collection Namibia" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/15350/DSC_3239.jpg" alt="Kwando River - Namushasha River Lodge Gondwana Collection Namibia" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/15350/_mg_4526.jpg" alt="Kwando River - Namushasha River Lodge Gondwana Collection Namibia" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/15350/deck_dining.jpg" alt="Kwando River - Namushasha River Lodge Gondwana Collection Namibia" loading="lazy">
                         
                 </div>
-                <div class="lux-scroll-hint" style="cursor: pointer;" title="Back to Start">
+                <div class="lux-scroll-hint" style="cursor: pointer;" title="Next Photo">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                    <span class="back-text" style="font-size: 0.65rem; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; margin-left: 6px; opacity: 0; transition: opacity 0.3s; color: #d87a4d;">Back</span>
                 </div>
             </div>
         </div>
         
         <!-- DAY BLOCK 09 -->
-        <div class="lux-day-block" id="day-09" data-day="day-09" data-bg="https://wetu.com/ImageHandler/c1920x1080/1713/1739428624008_shutterstock_2538823895-Bz.jpg" data-region="Kasane">
+        <div class="lux-day-block" id="day-09" data-day="day-09" data-bg="https://wetu.com/ImageHandler/c1920x1080/19538/1762871606060riverside-breakfast-1.jpg" data-region="Kasane">
             <div class="lux-day-number-row">
                 <span class="lux-day-numeral">09</span>
                 <div class="lux-day-line"></div>
@@ -744,22 +772,26 @@
             </p>
             <div class="lux-carousel-wrapper">
                 <div class="lux-carousel">
-                    <img src="https://wetu.com/ImageHandler/c1920x1080/19538/1762871606060riverside-breakfast-1.jpg" alt="Kasane - The Chobe Safari Lodge" loading="lazy">
-                        <img src="https://wetu.com/ImageHandler/c1920x1080/19538/img_9921.jpg" alt="Kasane - The Chobe Safari Lodge" loading="lazy">
+                    <img src="https://wetu.com/ImageHandler/c1920x1080/19538/img_9921.jpg" alt="Kasane - The Chobe Safari Lodge" loading="lazy">
                         <img src="https://wetu.com/ImageHandler/c1920x1080/19538/2010-07-15_chobe_safari__img_9237.jpg" alt="Kasane - The Chobe Safari Lodge" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/19538/20080204-img_1582.jpg" alt="Kasane - The Chobe Safari Lodge" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/19538/dji00248_1.jpg" alt="Kasane - The Chobe Safari Lodge" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/19538/img_9949.jpg" alt="Kasane - The Chobe Safari Lodge" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/19538/img_9926.jpg" alt="Kasane - The Chobe Safari Lodge" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/19538/img_0124.jpg" alt="Kasane - The Chobe Safari Lodge" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/19538/img_0036.jpg" alt="Kasane - The Chobe Safari Lodge" loading="lazy">
                         
                 </div>
-                <div class="lux-scroll-hint" style="cursor: pointer;" title="Back to Start">
+                <div class="lux-scroll-hint" style="cursor: pointer;" title="Next Photo">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                    <span class="back-text" style="font-size: 0.65rem; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; margin-left: 6px; opacity: 0; transition: opacity 0.3s; color: #d87a4d;">Back</span>
                 </div>
             </div>
         </div>
         
         <!-- DAY BLOCK 10 -->
-        <div class="lux-day-block" id="day-10" data-day="day-10" data-bg="https://wetu.com/ImageHandler/c1920x1080/481/vicfallszim-istock-185225607_8_c.jpg" data-region="Victoria Falls (Zimbabwe)">
+        <div class="lux-day-block" id="day-10" data-day="day-10" data-bg="https://wetu.com/ImageHandler/c1920x1080/194740/1756463034280pioneers03low.jpg" data-region="Victoria Falls (Zimbabwe)">
             <div class="lux-day-number-row">
                 <span class="lux-day-numeral">10</span>
                 <div class="lux-day-line"></div>
@@ -775,16 +807,20 @@
             </p>
             <div class="lux-carousel-wrapper">
                 <div class="lux-carousel">
-                    <img src="https://wetu.com/ImageHandler/c1920x1080/194740/1756463034280pioneers03low.jpg" alt="Victoria Falls (Zimbabwe) - Pioneers Victoria Falls" loading="lazy">
-                        <img src="https://wetu.com/ImageHandler/c1920x1080/194740/pioneers_1.jpg" alt="Victoria Falls (Zimbabwe) - Pioneers Victoria Falls" loading="lazy">
+                    <img src="https://wetu.com/ImageHandler/c1920x1080/194740/pioneers_1.jpg" alt="Victoria Falls (Zimbabwe) - Pioneers Victoria Falls" loading="lazy">
                         <img src="https://wetu.com/ImageHandler/c1920x1080/194740/pioneers_01_high.jpg" alt="Victoria Falls (Zimbabwe) - Pioneers Victoria Falls" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/194740/pioneers_46_high.jpg" alt="Victoria Falls (Zimbabwe) - Pioneers Victoria Falls" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/194740/pioneers_3.jpg" alt="Victoria Falls (Zimbabwe) - Pioneers Victoria Falls" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/194740/family_view_room.jpg" alt="Victoria Falls (Zimbabwe) - Pioneers Victoria Falls" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/194740/family_kids_room.jpg" alt="Victoria Falls (Zimbabwe) - Pioneers Victoria Falls" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/194740/monkey.jpg" alt="Victoria Falls (Zimbabwe) - Pioneers Victoria Falls" loading="lazy">
+                        <img src="https://wetu.com/ImageHandler/c1920x1080/194740/pioneers_35_high.jpg" alt="Victoria Falls (Zimbabwe) - Pioneers Victoria Falls" loading="lazy">
                         
                 </div>
-                <div class="lux-scroll-hint" style="cursor: pointer;" title="Back to Start">
+                <div class="lux-scroll-hint" style="cursor: pointer;" title="Next Photo">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                    <span class="back-text" style="font-size: 0.65rem; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; margin-left: 6px; opacity: 0; transition: opacity 0.3s; color: #d87a4d;">Back</span>
                 </div>
             </div>
         </div>
@@ -830,12 +866,38 @@
         }
         requestAnimationFrame(raf);
 
-        // 2. Intersection Observer for the Dynamic Hero Image Roll
+        // 2. Intersection Observer for the Dynamic Hero Image Roll (True Crossfade)
         const leftHero = document.getElementById('stickyHero');
         const luxTitle = document.getElementById('stickyTitle');
         const luxSubtitle = document.getElementById('stickySubtitle');
         
         let currentBg = leftHero.getAttribute('data-default-bg');
+        let activeLayer = 1;
+
+        function doCrossfade(bgUrl, region, subtext) {
+            if (bgUrl === currentBg) return;
+            currentBg = bgUrl;
+            
+            const oldLayerElement = document.getElementById('luxHeroBg' + activeLayer);
+            activeLayer = activeLayer === 1 ? 2 : 1;
+            const newLayerElement = document.getElementById('luxHeroBg' + activeLayer);
+
+            // Preload image onto the invisible layer, then fade it in smoothly!
+            newLayerElement.style.backgroundImage = `url('${bgUrl}')`;
+            newLayerElement.classList.add('active');
+            oldLayerElement.classList.remove('active');
+
+            // Fade titles gently
+            luxTitle.style.opacity = '0';
+            luxSubtitle.style.opacity = '0';
+            
+            setTimeout(() => {
+                luxTitle.innerHTML = region;
+                luxSubtitle.innerHTML = subtext;
+                luxTitle.style.opacity = '1';
+                luxSubtitle.style.opacity = '1';
+            }, 400);
+        }
 
         const dayObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -843,25 +905,7 @@
                 if (entry.isIntersecting) {
                     const bg = entry.target.getAttribute('data-bg');
                     const region = entry.target.getAttribute('data-region');
-                    
-                    if (bg && bg !== currentBg) {
-                        currentBg = bg;
-                        // Fade out the layer slowly
-                        leftHero.classList.add('swapping');
-                        luxTitle.style.opacity = '0';
-                        luxSubtitle.style.opacity = '0';
-                        
-                        // Swap and Fade back in completely seamlessly 
-                        setTimeout(() => {
-                            leftHero.style.backgroundImage = `url('${bg}')`;
-                            luxTitle.innerHTML = region;
-                            luxSubtitle.innerHTML = "Exploring the breathtaking " + region;
-                            
-                            leftHero.classList.remove('swapping');
-                            luxTitle.style.opacity = '1';
-                            luxSubtitle.style.opacity = '1';
-                        }, 700);
-                    }
+                    doCrossfade(bg, region, "Exploring the breathtaking " + region);
                 }
             });
         }, { rootMargin: '-30% 0px -40% 0px' }); // Triggers right when the next day hits the upper-middle of viewport
@@ -871,20 +915,7 @@
             if(entries[0].isIntersecting) {
                 const defaultBg = leftHero.getAttribute('data-default-bg');
                 const defaultTitle = leftHero.getAttribute('data-default-title');
-                if(currentBg !== defaultBg) {
-                    currentBg = defaultBg;
-                    leftHero.classList.add('swapping');
-                    luxTitle.style.opacity = '0';
-                    luxSubtitle.style.opacity = '0';
-                    setTimeout(() => {
-                        leftHero.style.backgroundImage = `url('${defaultBg}')`;
-                        luxTitle.innerHTML = defaultTitle;
-                        luxSubtitle.innerHTML = "A bespoke luxury journey through legendary landscapes.";
-                        leftHero.classList.remove('swapping');
-                        luxTitle.style.opacity = '1';
-                        luxSubtitle.style.opacity = '1';
-                    }, 700);
-                }
+                doCrossfade(defaultBg, defaultTitle, "A bespoke luxury journey through legendary landscapes.");
             }
         }, { threshold: 0.5 });
         
@@ -894,49 +925,23 @@
             dayObserver.observe(block);
         });
 
-        // 3. Carousel Intersection Observer: Rotate Arrow left when reaching the end!
+        // 3. Carousel Logic: Simple click to scroll, loops to start!
         document.querySelectorAll('.lux-carousel-wrapper').forEach(wrapper => {
             const carousel = wrapper.querySelector('.lux-carousel');
             const hintBtn = wrapper.querySelector('.lux-scroll-hint');
-            const hintSvg = hintBtn.querySelector('svg');
             const images = carousel.querySelectorAll('img');
             
             if (images.length > 0) {
-                // Observe the absolutely final image in the array
-                const lastImage = images[images.length - 1];
-                let isAtEnd = false;
-                
-                const scrollObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        // If the last image is visible inside the carousel scrolling pane
-                        if (entry.isIntersecting) {
-                            // Point arrow LEFT
-                            hintSvg.style.transform = "rotate(180deg)";
-                            hintBtn.classList.add('scrolled-end');
-                            isAtEnd = true;
-                        } else {
-                            // Point arrow RIGHT
-                            hintSvg.style.transform = "rotate(0deg)";
-                            hintBtn.classList.remove('scrolled-end');
-                            isAtEnd = false;
-                        }
-                    });
-                }, { 
-                    root: carousel, 
-                    threshold: 0.8 // Trigger when the last image is 80% visible
-                });
-                
-                scrollObserver.observe(lastImage);
-
-                // Add click-to-scroll functionality to the hint button
                 hintBtn.addEventListener('click', () => {
-                    if (isAtEnd) {
+                    // Calculate if we're near the end of the scroll width
+                    // (Allowing a 10px buffer due to fractional pixels)
+                    if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 10) {
+                        // Instantly loop to the start
                         carousel.scrollTo({ left: 0, behavior: 'smooth' });
                     } else {
                         // Scroll to the next image roughly
-                        const currentScroll = carousel.scrollLeft;
                         const imgWidth = images[0].clientWidth;
-                        carousel.scrollTo({ left: currentScroll + imgWidth + 16, behavior: 'smooth' });
+                        carousel.scrollTo({ left: carousel.scrollLeft + imgWidth + 16, behavior: 'smooth' });
                     }
                 });
             }
