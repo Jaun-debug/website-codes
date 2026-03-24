@@ -9,35 +9,51 @@ export async function scrapeGoogle(query: string) {
 }
 
 export async function scrapeBing(query: string) {
-    const searchUrl = `https://html.duckduckgo.com/html/?q=${encodeURIComponent(query)}`;
+    const searchUrl = `https://lite.duckduckgo.com/lite/`;
+    
     try {
         const response = await fetch(searchUrl, {
-            headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36' },
+            method: 'POST',
+            headers: { 
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: new URLSearchParams({ q: query }).toString()
         });
+        
         const html = await response.text();
         const $ = cheerio.load(html);
-        
         const results: any[] = [];
-        $('.result__snippet').each((_, el) => {
-            const link = $(el).parent().find('.result__url').attr('href');
-            const title = $(el).parent().find('.result__title').text().trim();
-            const snippet = $(el).text();
+        
+        $('tr').each((i, el) => {
+            const linkTag = $(el).find('.result-snippet').length > 0 ? null : $(el).find('a[rel="nofollow"]');
             
-            // Look for emails straight from snippet
-            const emails = extractEmails(snippet);
-            
-            if (link) {
-                // duckduckgo proxy bypass
-                let finalLink = link;
-                if(finalLink.includes('uddg=')) {
-                    finalLink = decodeURIComponent(finalLink.split('uddg=')[1].split('&')[0]);
+            if (linkTag && linkTag.length > 0) {
+                const url = linkTag.attr('href');
+                const title = linkTag.text().trim();
+                
+                // DDG Lite puts the snippet on the NEXT table row
+                const snippetRow = $(el).next();
+                const snippet = snippetRow.find('.result-snippet').text().trim() || "";
+                
+                const emails = extractEmails(snippet);
+                
+                if (url && !url.includes('duckduckgo.com')) {
+                    // duckduckgo proxy bypass
+                    let finalLink = url;
+                    if(finalLink.includes('uddg=')) {
+                        try {
+                            finalLink = decodeURIComponent(finalLink.split('uddg=')[1].split('&')[0]);
+                        } catch(e) {}
+                    }
+                    results.push({ title, url: finalLink, emails, snippet });
                 }
-                results.push({ title, url: finalLink, emails, snippet });
             }
         });
+        
         return results;
     } catch(err) {
-        console.error("Duckduckgo scraping error", err);
+        console.error("Lite Duckduckgo scraping error", err);
         return [];
     }
 }

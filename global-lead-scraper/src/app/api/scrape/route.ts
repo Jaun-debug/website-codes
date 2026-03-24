@@ -16,72 +16,61 @@ export async function POST(req: Request) {
     const leads: any[] = [];
     const seenDomains = new Set();
 
-    // 2. Async batch processing per result
-    for (const result of searchResults.slice(0, 15)) {
+    // 2. Async batch processing per result -- MUST be in parallel to beat Vercel's 10s timeout!
+    const processPromises = searchResults.slice(0, 10).map(async (result) => {
         try {
-            // Rate Limiting (500ms-1.5s delay)
-            await new Promise(r => setTimeout(r, Math.random() * 1000 + 500));
-            
             const domainMatch = result.url.match(/https?:\/\/(?:www\.)?([^\/]+)/i);
             const domain = domainMatch ? domainMatch[1] : '';
-            
-            if (!domain || seenDomains.has(domain)) continue;
+            if (!domain || seenDomains.has(domain)) return null;
             seenDomains.add(domain);
             
             // Try fetching the actual site carefully
             const siteRes = await fetch(result.url, { 
                 headers: { 'User-Agent': 'Mozilla/5.0' },
-                // VERY IMPORTANT: aggressive timeout so vercel function doesn't hang!
-                signal: AbortSignal.timeout(4000)
+                signal: AbortSignal.timeout(3000) // Super aggressive 3s timeout per lead
             });
             const siteHtml = await siteRes.text();
             
             const siteEmails = extractEmails(siteHtml);
-            // Combine with snippet emails
             const allEmails = Array.from(new Set([...result.emails, ...siteEmails]));
             
             // Apply Filters
-            if (filters?.onlyEmails && allEmails.length === 0) continue;
-            
+            if (filters?.onlyEmails && allEmails.length === 0) return null;
             if (filters?.onlyBusiness) {
                 const hasBusinessEmail = allEmails.some(e => !e.includes('@gmail') && !e.includes('@yahoo'));
-                if (!hasBusinessEmail && allEmails.length > 0) continue;
+                if (!hasBusinessEmail && allEmails.length > 0) return null;
             }
             
             const $ = cheerio.load(siteHtml);
             const hasContactPage = $('a[href*="contact"]').length > 0;
             
-            for (const email of allEmails) {
-                const score = scoreLead(email, hasContactPage);
-                leads.push({
-                    companyName: result.title.replace(/-.*/g, '').trim(),
-                    country,
-                    industry,
-                    website: result.url,
-                    email,
-                    score,
-                    source: 'Web Scrape'
-                });
-            }
+            return allEmails.map(email => ({
+                companyName: result.title.replace(/-.*/g, '').trim(),
+                country,
+                industry,
+                website: result.url,
+                email,
+                score: scoreLead(email, hasContactPage),
+                source: 'Web Scrape'
+            }));
             
         } catch (e) {
-            // timeout or connection block, ignore and continue
-            console.error(`Failed to scrape exactly URL: ${result.url}`);
-            
-            // If snippet had an email, fall back to snippet only
-            if (result.emails && result.emails.length > 0) {
-                if(!seenDomains.has(result.url)) {
-                     leads.push({
-                        companyName: result.title,
-                        country, industry, website: result.url,
-                        email: result.emails[0],
-                        score: scoreLead(result.emails[0], false),
-                        source: 'Web Search Snippet'
-                    });
-                }
+            // fallback to snippet
+            if (result.emails && result.emails.length > 0 && !seenDomains.has(result.url)) {
+                return [{
+                    companyName: result.title, country, industry, website: result.url,
+                    email: result.emails[0], score: scoreLead(result.emails[0], false),
+                    source: 'Web Search Snippet'
+                }];
             }
+            return null;
         }
-    }
+    });
     
+    const resultsArrays = await Promise.all(processPromises);
+    resultsArrays.forEach(arr => {
+        if (arr) leads.push(...arr);
+    });
+
     return NextResponse.json({ success: true, leads });
 }
