@@ -80,35 +80,48 @@
 
         /* Interactive Map Widget */
         .lux-interactive-map {
-            display: none; /* Hide on mobile */
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            width: 320px;
-            height: 480px;
-            background: rgba(248, 243, 235, 0.45); /* ~50% closer to transparent */
+            /* Mobile configuration: floats over the screen like a HUD */
+            position: fixed; 
+            top: 20vh;
+            left: 5vw;
+            width: 90vw;
+            height: 60vh;
+            background: rgba(248, 243, 235, 0.45); 
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             border: none;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15); /* softer shadow */
-            z-index: 10;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            z-index: 100;
             opacity: 0;
             visibility: hidden;
-            transform: translateX(20px);
+            transform: translateY(20px);
             transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+            pointer-events: none; /* allow scrolling underneath on mobile */
         }
 
         .lux-interactive-map.is-visible {
             opacity: 1;
             visibility: visible;
-            transform: translateX(0);
+            transform: translateY(0);
         }
 
         @media (min-width: 1024px) {
             .lux-interactive-map {
-                display: block;
+                /* Desktop configuration */
+                position: absolute;
+                top: 1.5rem;
+                right: 1.5rem;
+                left: auto;
+                width: 320px;
+                height: 480px;
+                z-index: 10;
+                transform: translateX(20px);
+                pointer-events: auto;
+            }
+            .lux-interactive-map.is-visible {
+                transform: translateX(0);
             }
         }
 
@@ -654,8 +667,8 @@
 
         // Auto-show map on scroll, hide when stopped for 2 seconds
         window.addEventListener('scroll', () => {
-            if (mapWidget && window.innerWidth >= 1024) {
-                // Show map while scrolling
+            if (mapWidget) {
+                // Show map while scrolling (now triggers on mobile too)
                 mapWidget.classList.add('is-visible');
                 
                 clearTimeout(scrollTimeout);
