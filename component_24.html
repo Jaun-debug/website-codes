@@ -483,7 +483,7 @@
                 <svg class="pin-car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 14h14M3 8h11M14 8l3 6h4v4h-3M3 8v10h2M16 11v-3M3 8C3 7 4 6 5 6h9l2 2v3"></path><circle cx="7" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg>
                 <span class="pin-label">Sossusvlei</span>
             </div>
-            <div class="lux-map-pin" data-target="day-5" style="top: 66%; left: 27.5%;">
+            <div class="lux-map-pin" data-target="day-5" style="top: 66.5%; left: 26%;">
                 <span class="pin-text">5</span>
                 <svg class="pin-car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 14h14M3 8h11M14 8l3 6h4v4h-3M3 8v10h2M16 11v-3M3 8C3 7 4 6 5 6h9l2 2v3"></path><circle cx="7" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg>
                 <span class="pin-label">Swakopmund</span>
@@ -823,13 +823,6 @@
                 updateMapState(false);
             });
         }
-
-        // Close map automatically on mobile when scrolling
-        window.addEventListener('scroll', () => {
-            if (window.innerWidth < 1024 && mapContainer.classList.contains('is-visible')) {
-                updateMapState(false);
-            }
-        }, { passive: true });
 
         // Setup Intersection Observer to detect which day is currently being viewed
         const observer = new IntersectionObserver((entries) => {
