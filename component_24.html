@@ -32,6 +32,7 @@
         @media (min-width: 1024px) {
             .lux-container {
                 flex-direction: row;
+                align-items: flex-start; /* CRITICAL FOR STICKY TO WORK IN FLEXBOX */
             }
         }
 
@@ -48,9 +49,10 @@
         @media (min-width: 1024px) {
             .lux-left {
                 width: 50vw;
-                height: 100vh;
+                height: calc(100vh - 85px); /* Adjusted to remove the white gap */
+                position: -webkit-sticky;
                 position: sticky;
-                top: 0;
+                top: 85px; /* Nudged up exactly to meet the menu bar */
             }
         }
 
@@ -80,14 +82,14 @@
         .lux-interactive-map {
             display: none; /* Hide on mobile */
             position: absolute;
-            top: 3rem;
-            right: 3rem;
+            top: 1.5rem;
+            right: 1.5rem;
             width: 320px;
             height: 480px;
             background: rgba(248, 243, 235, 0.45); /* ~50% closer to transparent */
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(210, 200, 185, 0.4);
+            border: none;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 15px 35px rgba(0,0,0,0.15); /* softer shadow */
@@ -204,6 +206,7 @@
             line-height: 1.1;
             margin: 0 0 1rem 0;
             letter-spacing: -0.02em;
+            color: #ffffff !important; /* Force white, override WP Theme blue */
         }
 
         .lux-subtitle {
@@ -295,7 +298,7 @@
             font-size: 2.2rem;
             font-weight: 400;
             margin: 0 0 1rem 0;
-            color: #111111;
+            color: #111111 !important; /* Force dark gray/black, override WP Theme blue */
             letter-spacing: 0.02em;
         }
 
@@ -353,15 +356,15 @@
         .lux-scroll-hint {
             display: flex;
             align-items: center;
-            justify-content: flex-end;
+            justify-content: flex-start;
             margin-top: 0.75rem;
             color: #d87a4d;
-            margin-right: -1rem;
         }
         
         @media (min-width: 1024px) {
             .lux-scroll-hint {
-                margin-right: 0; 
+                /* Add a tiny bit of left margin to align with the pictures perfectly if desired */
+                margin-left: 0; 
             }
         }
 
@@ -383,7 +386,7 @@
         <!-- Interactive Map Widget Overlay (Appears on scroll) -->
         <div class="lux-interactive-map">
             <!-- Authentic Namibia Map Background -->
-            <img src="../desert-tracks-dashboard/assets/namibia-rustic-map.svg" alt="Namibia Map Route" class="map-bg">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Namibia_relief_location_map.jpg" alt="Namibia Map Route" class="map-bg">
             
             <!-- Map Pins (Approximate layout matching the Wetu loop) -->
             <div class="lux-map-pin" data-target="day-1 day-14" style="top: 55%; left: 47%;">
@@ -638,6 +641,17 @@
         const mapWidget = document.querySelector('.lux-interactive-map');
         let scrollTimeout;
 
+        // --- WORDPRESS / NICEPAGE STICKY FIX ---
+        // Site builders often add "overflow: hidden" which completely breaks CSS "position: sticky"
+        // This force-clears overflow properties all the way up the DOM tree to allow the hero to stick!
+        let parentNode = document.querySelector('.lux-container').parentElement;
+        while (parentNode && parentNode.tagName !== 'BODY') {
+            parentNode.style.setProperty('overflow', 'visible', 'important');
+            parentNode.style.setProperty('overflow-x', 'visible', 'important');
+            parentNode.style.setProperty('overflow-y', 'visible', 'important');
+            parentNode = parentNode.parentElement;
+        }
+
         // Auto-show map on scroll, hide when stopped for 2 seconds
         window.addEventListener('scroll', () => {
             if (mapWidget && window.innerWidth >= 1024) {
@@ -672,7 +686,7 @@
             });
         }, {
             root: null,
-            rootMargin: "-45% 0px -45% 0px", // triggers when block scrolls near the exact middle of viewport
+            rootMargin: "-20% 0px -50% 0px", // triggers when block scrolls into upper half of viewport
             threshold: 0
         });
 
@@ -681,8 +695,8 @@
         // Optional: click pin to scroll to that day
         pins.forEach(pin => {
             pin.addEventListener('click', () => {
-                const targetId = pin.getAttribute('data-target');
-                const targetEl = document.getElementById(targetId);
+                const targetIds = pin.getAttribute('data-target').split(' ');
+                const targetEl = document.getElementById(targetIds[0]); // scroll to the first day listed
                 if(targetEl) {
                     targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }

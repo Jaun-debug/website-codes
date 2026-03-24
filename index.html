@@ -276,9 +276,9 @@
     },
     {
         "id": "component_24",
-        "title": "14-DAY NAMIBIA SELF-DRIVE",
+        "title": "14-Day Namibia Comfort Safari (Final UX)",
         "tag": "Self-Drive Doc",
-        "desc": "Extracted from SELF-DRIVE ITINERARY / 14-DAY NAMIBIA SELF-DRIVE.docx",
+        "desc": "The ultra-premium 14-Day Safari component with sticky hero, embedded Wikimedia map, and editorial layout.",
         "file": "component_24.html"
     },
     {
@@ -295,7 +295,29 @@
         function renderNav() {
             const container = document.getElementById('navContainer');
             container.innerHTML = '';
+            
+            let addedSelfDriveHeader = false;
+            let addedUIHeader = false;
+
             components.forEach((cmp, idx) => {
+                // Add Folder Categories
+                if (cmp.tag !== 'Self-Drive Doc' && !addedUIHeader) {
+                    const uiHeader = document.createElement('div');
+                    uiHeader.style.cssText = "font-size: 0.75rem; text-transform: uppercase; color: #888; margin: 10px 0 5px 5px; letter-spacing: 2px; font-weight: 700;";
+                    uiHeader.innerText = "Premium UI Tools";
+                    container.appendChild(uiHeader);
+                    addedUIHeader = true;
+                } else if (cmp.tag === 'Self-Drive Doc' && !addedSelfDriveHeader) {
+                    const sdHeader = document.createElement('div');
+                    sdHeader.style.cssText = "font-size: 0.75rem; text-transform: uppercase; color: var(--orange); margin: 25px 0 5px 5px; letter-spacing: 2px; font-weight: 700;";
+                    sdHeader.innerHTML = `
+                        <svg style="vertical-align: middle; margin-right: 4px; margin-top: -2px;" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                        Self-Drive Safaris
+                    `;
+                    container.appendChild(sdHeader);
+                    addedSelfDriveHeader = true;
+                }
+
                 const el = document.createElement('div');
                 el.className = 'nav-item ' + (idx === activeIndex ? 'active' : '');
                 el.onclick = () => loadComponent(idx);
@@ -303,7 +325,6 @@
                     <div style="display:flex; justify-content:space-between; width:100%; align-items:flex-start;">
                         <span class="nav-item-title">${cmp.title}</span>
                     </div>
-                    <span class="nav-item-tag">${cmp.tag}</span>
                 `;
                 container.appendChild(el);
             });
