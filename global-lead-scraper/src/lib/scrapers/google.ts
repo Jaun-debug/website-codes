@@ -2,10 +2,10 @@
 import * as cheerio from 'cheerio';
 import { extractEmails } from '../utils/extractEmails';
 
-export async function scrapeGoogle(query: string) {
+export async function scrapeGoogle(query: string, apiKey?: string) {
     // Note: Standard Google search blocks simple fetch. We use a fallback proxy or search API (Serper/SerpApi) ideally, 
     // but for this MVP, we scrape Bing instead as a proxy for "Google" or use a DuckDuckGo HTML endpoint to avoid blocks.
-    return scrapeBing(query); // Bridged for stability without API keys
+    return scrapeBing(query, apiKey); // Bridged for stability without API keys
 }
 
 export async function scrapeBing(query: string, apiKey?: string) {
