@@ -448,7 +448,7 @@
             height: 24px;
             animation: flashOrangeRight 1.5s infinite ease-in-out;
         }
-    \n .lux-interactive-map { display: none !important; } \n html { scroll-behavior: smooth; } \n .lux-left, .lux-title, .lux-subtitle { transition: opacity 0.6s ease-in-out, background-image 0.6s ease-in-out; } \n .lux-carousel { scroll-behavior: smooth; } \n .lux-scroll-hint svg { transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); } \n
+    \n .lux-interactive-map { display: none !important; } \n html { scroll-behavior: smooth; } \n .lux-left.swapping { opacity: 0.4; transform: translateX(-30px); } \n .lux-left, .lux-title, .lux-subtitle { transition: all 0.9s cubic-bezier(0.25, 1, 0.5, 1); } \n .lux-carousel { scroll-behavior: smooth; } \n .lux-scroll-hint svg { transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); } \n .lux-scroll-hint.scrolled-end .back-text { opacity: 1; } \n
     </style>
     <!-- Premium Smooth Scroll Library (Lenis) for luxurious itinerary scrolling -->
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
@@ -496,16 +496,16 @@
             </p>
             <div class="lux-carousel-wrapper">
                 <div class="lux-carousel">
-                    <img src="https://wetu.com/ImageHandler/c1920x1080/1548/15491470_xl.jpg" alt="Windhoek - Ti Melen Boutique Guesthouse" loading="lazy">
-                        <img src="https://wetu.com/ImageHandler/c1920x1080/55342/143a4578.jpg" alt="Windhoek - Ti Melen Boutique Guesthouse" loading="lazy">
+                    <img src="https://wetu.com/ImageHandler/c1920x1080/55342/143a4578.jpg" alt="Windhoek - Ti Melen Boutique Guesthouse" loading="lazy">
                         <img src="https://wetu.com/ImageHandler/c1920x1080/55342/img_4373.jpg" alt="Windhoek - Ti Melen Boutique Guesthouse" loading="lazy">
                         <img src="https://wetu.com/ImageHandler/c1920x1080/55342/img_43721.jpg" alt="Windhoek - Ti Melen Boutique Guesthouse" loading="lazy">
                         
                 </div>
-                <div class="lux-scroll-hint">
+                <div class="lux-scroll-hint" style="cursor: pointer;" title="Back to Start">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
+                    <span class="back-text" style="font-size: 0.65rem; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; margin-left: 6px; opacity: 0; transition: opacity 0.3s; color: #d87a4d;">Back</span>
                 </div>
             </div>
         </div>
@@ -527,16 +527,16 @@
             </p>
             <div class="lux-carousel-wrapper">
                 <div class="lux-carousel">
-                    <img src="https://wetu.com/ImageHandler/c1920x1080/52159/kalahari_namibia-shutterstock-2095575364_b.jpg" alt="Kalahari Namibia - Kalahari Anib Lodge Gondwana Collection Namibia" loading="lazy">
-                        <img src="https://wetu.com/ImageHandler/c1920x1080/31966/anib2016-8826.jpg" alt="Kalahari Namibia - Kalahari Anib Lodge Gondwana Collection Namibia" loading="lazy">
+                    <img src="https://wetu.com/ImageHandler/c1920x1080/31966/anib2016-8826.jpg" alt="Kalahari Namibia - Kalahari Anib Lodge Gondwana Collection Namibia" loading="lazy">
                         <img src="https://wetu.com/ImageHandler/c1920x1080/31966/anib2016-8828.jpg" alt="Kalahari Namibia - Kalahari Anib Lodge Gondwana Collection Namibia" loading="lazy">
                         <img src="https://wetu.com/ImageHandler/c1920x1080/31966/gondwana_collection_-_kalahari_anib_lodge_00018.jpg" alt="Kalahari Namibia - Kalahari Anib Lodge Gondwana Collection Namibia" loading="lazy">
                         
                 </div>
-                <div class="lux-scroll-hint">
+                <div class="lux-scroll-hint" style="cursor: pointer;" title="Back to Start">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
+                    <span class="back-text" style="font-size: 0.65rem; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; margin-left: 6px; opacity: 0; transition: opacity 0.3s; color: #d87a4d;">Back</span>
                 </div>
             </div>
         </div>
@@ -558,16 +558,16 @@
             </p>
             <div class="lux-carousel-wrapper">
                 <div class="lux-carousel">
-                    <img src="https://wetu.com/ImageHandler/c1920x1080/472/fish_river_canyon-istock-639206242_b.jpg" alt="Fish River Canyon - Canyon Roadhouse Gondwana Collection Namibia" loading="lazy">
-                        <img src="https://wetu.com/ImageHandler/c1920x1080/4033/roadhouse2_2.jpg" alt="Fish River Canyon - Canyon Roadhouse Gondwana Collection Namibia" loading="lazy">
+                    <img src="https://wetu.com/ImageHandler/c1920x1080/4033/roadhouse2_2.jpg" alt="Fish River Canyon - Canyon Roadhouse Gondwana Collection Namibia" loading="lazy">
                         <img src="https://wetu.com/ImageHandler/c1920x1080/4033/2017_12_namibia-72772.jpg" alt="Fish River Canyon - Canyon Roadhouse Gondwana Collection Namibia" loading="lazy">
                         <img src="https://wetu.com/ImageHandler/c1920x1080/4033/roadhouse18.jpg" alt="Fish River Canyon - Canyon Roadhouse Gondwana Collection Namibia" loading="lazy">
                         
                 </div>
-                <div class="lux-scroll-hint">
+                <div class="lux-scroll-hint" style="cursor: pointer;" title="Back to Start">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
+                    <span class="back-text" style="font-size: 0.65rem; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; margin-left: 6px; opacity: 0; transition: opacity 0.3s; color: #d87a4d;">Back</span>
                 </div>
             </div>
         </div>
@@ -589,16 +589,16 @@
             </p>
             <div class="lux-carousel-wrapper">
                 <div class="lux-carousel">
-                    <img src="https://wetu.com/ImageHandler/c1920x1080/473/luderitz-istock-174951107_b.jpg" alt="Luderitz - Alte Villa" loading="lazy">
-                        <img src="https://wetu.com/ImageHandler/c1920x1080/68363/1.jpg" alt="Luderitz - Alte Villa" loading="lazy">
+                    <img src="https://wetu.com/ImageHandler/c1920x1080/68363/1.jpg" alt="Luderitz - Alte Villa" loading="lazy">
                         <img src="https://wetu.com/ImageHandler/c1920x1080/68363/2.jpg" alt="Luderitz - Alte Villa" loading="lazy">
                         <img src="https://wetu.com/ImageHandler/c1920x1080/68363/3.jpg" alt="Luderitz - Alte Villa" loading="lazy">
                         
                 </div>
-                <div class="lux-scroll-hint">
+                <div class="lux-scroll-hint" style="cursor: pointer;" title="Back to Start">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
+                    <span class="back-text" style="font-size: 0.65rem; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; margin-left: 6px; opacity: 0; transition: opacity 0.3s; color: #d87a4d;">Back</span>
                 </div>
             </div>
         </div>
@@ -620,16 +620,16 @@
             </p>
             <div class="lux-carousel-wrapper">
                 <div class="lux-carousel">
-                    <img src="https://wetu.com/ImageHandler/c1920x1080/468/Sossus_C.jpg" alt="Sossusvlei - Desert Homestead Lodge" loading="lazy">
-                        <img src="https://wetu.com/ImageHandler/c1920x1080/10515/ondili_desert_homestead_venture_media--23.jpg" alt="Sossusvlei - Desert Homestead Lodge" loading="lazy">
+                    <img src="https://wetu.com/ImageHandler/c1920x1080/10515/ondili_desert_homestead_venture_media--23.jpg" alt="Sossusvlei - Desert Homestead Lodge" loading="lazy">
                         <img src="https://wetu.com/ImageHandler/c1920x1080/10515/img_6924.jpg" alt="Sossusvlei - Desert Homestead Lodge" loading="lazy">
                         <img src="https://wetu.com/ImageHandler/c1920x1080/10515/img_5262.jpg" alt="Sossusvlei - Desert Homestead Lodge" loading="lazy">
                         
                 </div>
-                <div class="lux-scroll-hint">
+                <div class="lux-scroll-hint" style="cursor: pointer;" title="Back to Start">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
+                    <span class="back-text" style="font-size: 0.65rem; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; margin-left: 6px; opacity: 0; transition: opacity 0.3s; color: #d87a4d;">Back</span>
                 </div>
             </div>
         </div>
@@ -651,16 +651,16 @@
             </p>
             <div class="lux-carousel-wrapper">
                 <div class="lux-carousel">
-                    <img src="https://wetu.com/ImageHandler/c1920x1080/471/Swakop_1.jpg" alt="Swakopmund - Swakopmund Guesthouse" loading="lazy">
-                        <img src="https://wetu.com/ImageHandler/c1920x1080/149035/exterior_24.jpg" alt="Swakopmund - Swakopmund Guesthouse" loading="lazy">
+                    <img src="https://wetu.com/ImageHandler/c1920x1080/149035/exterior_24.jpg" alt="Swakopmund - Swakopmund Guesthouse" loading="lazy">
                         <img src="https://wetu.com/ImageHandler/c1920x1080/149035/exterior_23.jpg" alt="Swakopmund - Swakopmund Guesthouse" loading="lazy">
                         <img src="https://wetu.com/ImageHandler/c1920x1080/149035/marcbass_swakopgh_renew_-_courtyard1.jpg" alt="Swakopmund - Swakopmund Guesthouse" loading="lazy">
                         
                 </div>
-                <div class="lux-scroll-hint">
+                <div class="lux-scroll-hint" style="cursor: pointer;" title="Back to Start">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
+                    <span class="back-text" style="font-size: 0.65rem; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; margin-left: 6px; opacity: 0; transition: opacity 0.3s; color: #d87a4d;">Back</span>
                 </div>
             </div>
         </div>
@@ -682,16 +682,16 @@
             </p>
             <div class="lux-carousel-wrapper">
                 <div class="lux-carousel">
-                    <img src="https://wetu.com/ImageHandler/c1920x1080/1562/khorixas-shutterstock-659281993_b.jpg" alt="Khorixas - Lodge Damaraland" loading="lazy">
-                        <img src="https://wetu.com/ImageHandler/c1920x1080/312689/img_e18011.jpg" alt="Khorixas - Lodge Damaraland" loading="lazy">
+                    <img src="https://wetu.com/ImageHandler/c1920x1080/312689/img_e18011.jpg" alt="Khorixas - Lodge Damaraland" loading="lazy">
                         <img src="https://wetu.com/ImageHandler/c1920x1080/312689/wozde81901.jpg" alt="Khorixas - Lodge Damaraland" loading="lazy">
                         <img src="https://wetu.com/ImageHandler/c1920x1080/312689/img_e18421.jpg" alt="Khorixas - Lodge Damaraland" loading="lazy">
                         
                 </div>
-                <div class="lux-scroll-hint">
+                <div class="lux-scroll-hint" style="cursor: pointer;" title="Back to Start">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
+                    <span class="back-text" style="font-size: 0.65rem; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; margin-left: 6px; opacity: 0; transition: opacity 0.3s; color: #d87a4d;">Back</span>
                 </div>
             </div>
         </div>
@@ -713,16 +713,16 @@
             </p>
             <div class="lux-carousel-wrapper">
                 <div class="lux-carousel">
-                    <img src="https://wetu.com/ImageHandler/c1920x1080/1634/opuwo_b_-gaston_piccinetti-shutterstock_1395647999.jpg" alt="Opuwo - Opuwo Country Lodge" loading="lazy">
-                        <img src="https://wetu.com/ImageHandler/c1920x1080/28950/20220804_192246.jpg" alt="Opuwo - Opuwo Country Lodge" loading="lazy">
+                    <img src="https://wetu.com/ImageHandler/c1920x1080/28950/20220804_192246.jpg" alt="Opuwo - Opuwo Country Lodge" loading="lazy">
                         <img src="https://wetu.com/ImageHandler/c1920x1080/28950/20220816_182328.jpg" alt="Opuwo - Opuwo Country Lodge" loading="lazy">
                         <img src="https://wetu.com/ImageHandler/c1920x1080/28950/20220827_115537.jpg" alt="Opuwo - Opuwo Country Lodge" loading="lazy">
                         
                 </div>
-                <div class="lux-scroll-hint">
+                <div class="lux-scroll-hint" style="cursor: pointer;" title="Back to Start">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
+                    <span class="back-text" style="font-size: 0.65rem; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; margin-left: 6px; opacity: 0; transition: opacity 0.3s; color: #d87a4d;">Back</span>
                 </div>
             </div>
         </div>
@@ -744,16 +744,16 @@
             </p>
             <div class="lux-carousel-wrapper">
                 <div class="lux-carousel">
-                    <img src="https://wetu.com/ImageHandler/c1920x1080/1629/epupa_falls-shutterstock-1838209246_b.jpg" alt="Epupa Falls - Omarunga Epupa-Falls Camp Gondwana Collection Namibia" loading="lazy">
-                        <img src="https://wetu.com/ImageHandler/c1920x1080/34701/omarunga-scenery21.jpg" alt="Epupa Falls - Omarunga Epupa-Falls Camp Gondwana Collection Namibia" loading="lazy">
+                    <img src="https://wetu.com/ImageHandler/c1920x1080/34701/omarunga-scenery21.jpg" alt="Epupa Falls - Omarunga Epupa-Falls Camp Gondwana Collection Namibia" loading="lazy">
                         <img src="https://wetu.com/ImageHandler/c1920x1080/34701/dsc_8001.jpg" alt="Epupa Falls - Omarunga Epupa-Falls Camp Gondwana Collection Namibia" loading="lazy">
                         <img src="https://wetu.com/ImageHandler/c1920x1080/34701/dsc_7983.jpg" alt="Epupa Falls - Omarunga Epupa-Falls Camp Gondwana Collection Namibia" loading="lazy">
                         
                 </div>
-                <div class="lux-scroll-hint">
+                <div class="lux-scroll-hint" style="cursor: pointer;" title="Back to Start">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
+                    <span class="back-text" style="font-size: 0.65rem; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; margin-left: 6px; opacity: 0; transition: opacity 0.3s; color: #d87a4d;">Back</span>
                 </div>
             </div>
         </div>
@@ -775,16 +775,16 @@
             </p>
             <div class="lux-carousel-wrapper">
                 <div class="lux-carousel">
-                    <img src="https://wetu.com/ImageHandler/c1920x1080/48367/istock-838895564_b.jpg" alt="Etosha West - Hobatere Lodge" loading="lazy">
-                        <img src="https://wetu.com/ImageHandler/c1920x1080/10417/amazing_planet_filip_kulisev_elephant3.jpg" alt="Etosha West - Hobatere Lodge" loading="lazy">
+                    <img src="https://wetu.com/ImageHandler/c1920x1080/10417/amazing_planet_filip_kulisev_elephant3.jpg" alt="Etosha West - Hobatere Lodge" loading="lazy">
                         <img src="https://wetu.com/ImageHandler/c1920x1080/10417/amazing_planet_filip_kulisev_front-of-lodge2.jpg" alt="Etosha West - Hobatere Lodge" loading="lazy">
                         <img src="https://wetu.com/ImageHandler/c1920x1080/10417/green_lions2.jpg" alt="Etosha West - Hobatere Lodge" loading="lazy">
                         
                 </div>
-                <div class="lux-scroll-hint">
+                <div class="lux-scroll-hint" style="cursor: pointer;" title="Back to Start">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
+                    <span class="back-text" style="font-size: 0.65rem; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; margin-left: 6px; opacity: 0; transition: opacity 0.3s; color: #d87a4d;">Back</span>
                 </div>
             </div>
         </div>
@@ -806,16 +806,16 @@
             </p>
             <div class="lux-carousel-wrapper">
                 <div class="lux-carousel">
-                    <img src="https://wetu.com/ImageHandler/c1920x1080/123643/etosha_7_c.jpg" alt="Etosha South - Etosha Safari Camp Gondwana Collection Namibia" loading="lazy">
-                        <img src="https://wetu.com/ImageHandler/c1920x1080/10560/etosha_game_drive1.jpg" alt="Etosha South - Etosha Safari Camp Gondwana Collection Namibia" loading="lazy">
+                    <img src="https://wetu.com/ImageHandler/c1920x1080/10560/etosha_game_drive1.jpg" alt="Etosha South - Etosha Safari Camp Gondwana Collection Namibia" loading="lazy">
                         <img src="https://wetu.com/ImageHandler/c1920x1080/10560/dsc_9369.jpg" alt="Etosha South - Etosha Safari Camp Gondwana Collection Namibia" loading="lazy">
                         <img src="https://wetu.com/ImageHandler/c1920x1080/10560/dsc_7303.jpg" alt="Etosha South - Etosha Safari Camp Gondwana Collection Namibia" loading="lazy">
                         
                 </div>
-                <div class="lux-scroll-hint">
+                <div class="lux-scroll-hint" style="cursor: pointer;" title="Back to Start">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
+                    <span class="back-text" style="font-size: 0.65rem; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; margin-left: 6px; opacity: 0; transition: opacity 0.3s; color: #d87a4d;">Back</span>
                 </div>
             </div>
         </div>
@@ -837,16 +837,16 @@
             </p>
             <div class="lux-carousel-wrapper">
                 <div class="lux-carousel">
-                    <img src="https://wetu.com/ImageHandler/c1920x1080/139884/greater_windhoek_b_-rainer_lesniewski-_shutterstock_795120685.jpg" alt="Greater Windhoek - Okapuka Safari Lodge Gondwana Collection Namibia" loading="lazy">
-                        <img src="https://wetu.com/ImageHandler/c1920x1080/15330/okapuka_safai_lodge_1.jpg" alt="Greater Windhoek - Okapuka Safari Lodge Gondwana Collection Namibia" loading="lazy">
+                    <img src="https://wetu.com/ImageHandler/c1920x1080/15330/okapuka_safai_lodge_1.jpg" alt="Greater Windhoek - Okapuka Safari Lodge Gondwana Collection Namibia" loading="lazy">
                         <img src="https://wetu.com/ImageHandler/c1920x1080/15330/okapuka_safari_lodge__game_drive_17.jpg" alt="Greater Windhoek - Okapuka Safari Lodge Gondwana Collection Namibia" loading="lazy">
                         <img src="https://wetu.com/ImageHandler/c1920x1080/15330/okapuka_safari_lodge_lounge_4.jpg" alt="Greater Windhoek - Okapuka Safari Lodge Gondwana Collection Namibia" loading="lazy">
                         
                 </div>
-                <div class="lux-scroll-hint">
+                <div class="lux-scroll-hint" style="cursor: pointer;" title="Back to Start">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
+                    <span class="back-text" style="font-size: 0.65rem; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; margin-left: 6px; opacity: 0; transition: opacity 0.3s; color: #d87a4d;">Back</span>
                 </div>
             </div>
         </div>
@@ -908,8 +908,8 @@
                     
                     if (bg && bg !== currentBg) {
                         currentBg = bg;
-                        // Fade out the layer 
-                        leftHero.style.opacity = '0.6';
+                        // Fade out the layer slowly
+                        leftHero.classList.add('swapping');
                         luxTitle.style.opacity = '0';
                         luxSubtitle.style.opacity = '0';
                         
@@ -919,10 +919,10 @@
                             luxTitle.innerHTML = region;
                             luxSubtitle.innerHTML = "Exploring the breathtaking " + region;
                             
-                            leftHero.style.opacity = '1';
+                            leftHero.classList.remove('swapping');
                             luxTitle.style.opacity = '1';
                             luxSubtitle.style.opacity = '1';
-                        }, 400);
+                        }, 700);
                     }
                 }
             });
@@ -935,17 +935,17 @@
                 const defaultTitle = leftHero.getAttribute('data-default-title');
                 if(currentBg !== defaultBg) {
                     currentBg = defaultBg;
-                    leftHero.style.opacity = '0.6';
+                    leftHero.classList.add('swapping');
                     luxTitle.style.opacity = '0';
                     luxSubtitle.style.opacity = '0';
                     setTimeout(() => {
                         leftHero.style.backgroundImage = `url('${defaultBg}')`;
                         luxTitle.innerHTML = defaultTitle;
                         luxSubtitle.innerHTML = "A bespoke luxury journey through legendary landscapes.";
-                        leftHero.style.opacity = '1';
+                        leftHero.classList.remove('swapping');
                         luxTitle.style.opacity = '1';
                         luxSubtitle.style.opacity = '1';
-                    }, 400);
+                    }, 700);
                 }
             }
         }, { threshold: 0.5 });
@@ -959,12 +959,14 @@
         // 3. Carousel Intersection Observer: Rotate Arrow left when reaching the end!
         document.querySelectorAll('.lux-carousel-wrapper').forEach(wrapper => {
             const carousel = wrapper.querySelector('.lux-carousel');
-            const hintSvg = wrapper.querySelector('.lux-scroll-hint svg');
+            const hintBtn = wrapper.querySelector('.lux-scroll-hint');
+            const hintSvg = hintBtn.querySelector('svg');
             const images = carousel.querySelectorAll('img');
             
             if (images.length > 0) {
                 // Observe the absolutely final image in the array
                 const lastImage = images[images.length - 1];
+                let isAtEnd = false;
                 
                 const scrollObserver = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
@@ -972,9 +974,13 @@
                         if (entry.isIntersecting) {
                             // Point arrow LEFT
                             hintSvg.style.transform = "rotate(180deg)";
+                            hintBtn.classList.add('scrolled-end');
+                            isAtEnd = true;
                         } else {
                             // Point arrow RIGHT
                             hintSvg.style.transform = "rotate(0deg)";
+                            hintBtn.classList.remove('scrolled-end');
+                            isAtEnd = false;
                         }
                     });
                 }, { 
@@ -983,6 +989,18 @@
                 });
                 
                 scrollObserver.observe(lastImage);
+
+                // Add click-to-scroll functionality to the hint button
+                hintBtn.addEventListener('click', () => {
+                    if (isAtEnd) {
+                        carousel.scrollTo({ left: 0, behavior: 'smooth' });
+                    } else {
+                        // Scroll to the next image roughly
+                        const currentScroll = carousel.scrollLeft;
+                        const imgWidth = images[0].clientWidth;
+                        carousel.scrollTo({ left: currentScroll + imgWidth + 16, behavior: 'smooth' });
+                    }
+                });
             }
         });
     </script>
