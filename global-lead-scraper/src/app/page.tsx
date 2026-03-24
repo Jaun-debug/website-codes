@@ -10,6 +10,7 @@ export default function Home() {
   const [customIndustry, setCustomIndustry] = useState('');
   
   const [filters, setFilters] = useState({ onlyEmails: true, onlyBusiness: true });
+  const [apiKey, setApiKey] = useState('');
   const [leads, setLeads] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -23,7 +24,8 @@ export default function Home() {
             body: JSON.stringify({
                 country,
                 industry: industry === 'Custom' ? customIndustry : industry,
-                filters
+                filters,
+                apiKey
             })
         });
         const data = await res.json();
@@ -103,6 +105,16 @@ export default function Home() {
                         <input type="checkbox" checked={filters.onlyBusiness} onChange={e=>setFilters({...filters, onlyBusiness: e.target.checked})} className="accent-[#C19A6B] w-4 h-4" />
                         Exclude Gmail/Yahoo 
                     </label>
+                </div>
+
+                <div className="pt-4 border-t border-[#E0D5C1]">
+                    <label className="block text-sm font-semibold text-[#5A5A4A] mb-1">
+                        Serper.dev API Key <span className="text-xs font-normal text-red-500">(Required)</span>
+                    </label>
+                    <input type="password" placeholder="Paste free Serper API key..." 
+                           value={apiKey} onChange={e => setApiKey(e.target.value)}
+                           className="w-full bg-[#F9F7F2] border border-[#D5CBB8] rounded-md px-4 py-2 focus:ring-2 focus:ring-[#C19A6B] outline-none text-sm" />
+                    <p className="text-[11px] text-[#A8A88B] mt-1">Get 2,500 free searches at <a href="https://serper.dev" target="_blank" className="underline hover:text-[#C19A6B]">serper.dev</a></p>
                 </div>
 
                 <button onClick={startScrape} disabled={loading}

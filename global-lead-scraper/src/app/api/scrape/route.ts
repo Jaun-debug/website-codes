@@ -6,12 +6,12 @@ import { extractEmails, scoreLead } from '@/lib/utils/extractEmails';
 
 export async function POST(req: Request) {
     const body = await req.json();
-    const { country, industry, filters } = body;
+    const { country, industry, filters, apiKey } = body;
     
     const query = `${industry} in ${country} contact email`;
     
     // 1. Search search engines safely
-    const searchResults = await scrapeGoogle(query);
+    const searchResults = await scrapeGoogle(query, apiKey);
     
     const leads: any[] = [];
     const seenDomains = new Set();

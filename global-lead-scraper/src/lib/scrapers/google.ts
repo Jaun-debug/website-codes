@@ -8,9 +8,34 @@ export async function scrapeGoogle(query: string) {
     return scrapeBing(query); // Bridged for stability without API keys
 }
 
-export async function scrapeBing(query: string) {
+export async function scrapeBing(query: string, apiKey?: string) {
+    if (apiKey) {
+        try {
+            const res = await fetch('https://google.serper.dev/search', {
+                method: 'POST',
+                headers: {
+                    'X-API-KEY': apiKey,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ q: query, gl: 'us', num: 30 })
+            });
+            const data = await res.json();
+            
+            if (data.organic) {
+                return data.organic.map((r: any) => ({
+                    title: r.title,
+                    url: r.link,
+                    snippet: r.snippet,
+                    emails: extractEmails(r.snippet)
+                }));
+            }
+        } catch (e) {
+            console.error("Serper API error", e);
+        }
+    }
+
+    // Fallback to DuckDuckGo Lite if no API key
     const searchUrl = `https://lite.duckduckgo.com/lite/`;
-    
     try {
         const response = await fetch(searchUrl, {
             method: 'POST',
@@ -27,19 +52,14 @@ export async function scrapeBing(query: string) {
         
         $('tr').each((i, el) => {
             const linkTag = $(el).find('.result-snippet').length > 0 ? null : $(el).find('a[rel="nofollow"]');
-            
             if (linkTag && linkTag.length > 0) {
                 const url = linkTag.attr('href');
                 const title = linkTag.text().trim();
-                
-                // DDG Lite puts the snippet on the NEXT table row
                 const snippetRow = $(el).next();
                 const snippet = snippetRow.find('.result-snippet').text().trim() || "";
-                
                 const emails = extractEmails(snippet);
                 
                 if (url && !url.includes('duckduckgo.com')) {
-                    // duckduckgo proxy bypass
                     let finalLink = url;
                     if(finalLink.includes('uddg=')) {
                         try {
@@ -50,10 +70,8 @@ export async function scrapeBing(query: string) {
                 }
             }
         });
-        
         return results;
     } catch(err) {
-        console.error("Lite Duckduckgo scraping error", err);
         return [];
     }
 }
