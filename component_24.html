@@ -274,6 +274,67 @@
             }
         }
 
+        
+        .lux-day-location-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            padding-bottom: 0.5rem;
+        }
+        @media (max-width: 768px) {
+            .lux-day-location-wrapper {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+        }
+        .lux-day-location {
+            margin-bottom: 0 !important;
+        }
+        .lux-view-map-btn {
+            background: none;
+            border: 1px solid #d87a4d;
+            color: #d87a4d;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.3s;
+        }
+        .lux-view-map-btn:hover {
+            background: #d87a4d;
+            color: #ffffff;
+        }
+        .lux-map-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 32px;
+            height: 32px;
+            background: #ffffff;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            color: #333;
+            transition: transform 0.2s;
+        }
+        .lux-map-close:hover {
+            transform: scale(1.1);
+        }
+
         /* Day Block Styling */
         .lux-day-block {
             margin-bottom: 6rem;
@@ -402,7 +463,12 @@
         <div class="lux-overlay"></div>
         
         <!-- Interactive Map Widget Overlay (Appears on scroll) -->
-        <div class="lux-interactive-map">
+        
+        <div class="lux-interactive-map" id="mapWidget">
+            <button class="lux-map-close" id="closeMapBtn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+
             <!-- Authentic Namibia Map Background (Replace with WP media URL when live) -->
             <img src="https://website-codes-vert.vercel.app/custom_map.jpg" alt="Namibia Map Route" class="map-bg">
             
@@ -468,7 +534,13 @@
                 <span class="lux-day-numeral">01</span>
                 <div class="lux-day-line"></div>
             </div>
-            <span class="lux-day-location">WINDHOEK — TI MELEN BOUTIQUE GUESTHOUSE</span>
+            <div class="lux-day-location-wrapper">
+                <span class="lux-day-location">WINDHOEK — TI MELEN BOUTIQUE GUESTHOUSE</span>
+                <button class="lux-view-map-btn">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    View Map
+                </button>
+            </div>
             <h2 class="lux-day-title">Arrival in Windhoek</h2>
             <p class="lux-day-desc">Experience the charm of Windhoek in a boutique guesthouse blending modern comforts with local warmth. Spend your first night in Namibia surrounded by the intimate atmosphere of Ti Melen, ideal for a peaceful start to your adventure.</p>
             <div class="lux-carousel">
@@ -490,7 +562,13 @@
                 <span class="lux-day-numeral">02</span>
                 <div class="lux-day-line"></div>
             </div>
-            <span class="lux-day-location">KALAHARI DESERT — KALAHARI ANIB LODGE</span>
+            <div class="lux-day-location-wrapper">
+                <span class="lux-day-location">KALAHARI DESERT — KALAHARI ANIB LODGE</span>
+                <button class="lux-view-map-btn">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    View Map
+                </button>
+            </div>
             <h2 class="lux-day-title">Journey to the Kalahari</h2>
             <p class="lux-day-desc">Discover the beauty of the Kalahari at this eco-friendly lodge. The towering red dunes and starry nights set the perfect backdrop for a romantic evening. Enjoy luxurious cuisine and desert exploration before retreating to your cozy room.</p>
             <div class="lux-carousel">
@@ -512,7 +590,13 @@
                 <span class="lux-day-numeral">03</span>
                 <div class="lux-day-line"></div>
             </div>
-            <span class="lux-day-location">SOSSUSVLEI — DESERT HOMESTEAD LODGE</span>
+            <div class="lux-day-location-wrapper">
+                <span class="lux-day-location">SOSSUSVLEI — DESERT HOMESTEAD LODGE</span>
+                <button class="lux-view-map-btn">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    View Map
+                </button>
+            </div>
             <h2 class="lux-day-title">Dunes of Sossusvlei</h2>
             <p class="lux-day-desc">Immerse yourself in the surreal beauty of the Namib Desert. Stay at Desert Homestead, nestled between the red dunes, where you can explore the world's tallest dunes and return to luxury at the lodge for intimate sunset views.</p>
             <div class="lux-carousel">
@@ -534,7 +618,13 @@
                 <span class="lux-day-numeral">05</span>
                 <div class="lux-day-line"></div>
             </div>
-            <span class="lux-day-location">SWAKOPMUND — SWAKOPMUND GUESTHOUSE</span>
+            <div class="lux-day-location-wrapper">
+                <span class="lux-day-location">SWAKOPMUND — SWAKOPMUND GUESTHOUSE</span>
+                <button class="lux-view-map-btn">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    View Map
+                </button>
+            </div>
             <h2 class="lux-day-title">Coastal Charm</h2>
             <p class="lux-day-desc">Blend adventure with relaxation at this charming guesthouse in Swakopmund, offering easy access to the beach and colonial-style comforts. Explore the unique coastal town with its German heritage, or unwind with a stroll along the ocean.</p>
             <div class="lux-carousel">
@@ -556,7 +646,13 @@
                 <span class="lux-day-numeral">07</span>
                 <div class="lux-day-line"></div>
             </div>
-            <span class="lux-day-location">DAMARALAND — LODGE DAMARALAND</span>
+            <div class="lux-day-location-wrapper">
+                <span class="lux-day-location">DAMARALAND — LODGE DAMARALAND</span>
+                <button class="lux-view-map-btn">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    View Map
+                </button>
+            </div>
             <h2 class="lux-day-title">Ancient Landscapes</h2>
             <p class="lux-day-desc">In the heart of Damaraland, experience timeless landscapes and ancient rock art. Stay in a comfortable lodge designed to blend with its surroundings, offering exciting excursions to explore the desert's hidden gems.</p>
             <div class="lux-carousel">
@@ -578,7 +674,13 @@
                 <span class="lux-day-numeral">09</span>
                 <div class="lux-day-line"></div>
             </div>
-            <span class="lux-day-location">ETOSHA SOUTH — ETOSHA SAFARI CAMP</span>
+            <div class="lux-day-location-wrapper">
+                <span class="lux-day-location">ETOSHA SOUTH — ETOSHA SAFARI CAMP</span>
+                <button class="lux-view-map-btn">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    View Map
+                </button>
+            </div>
             <h2 class="lux-day-title">Gateway to Wildlife</h2>
             <p class="lux-day-desc">Set near the southern entrance to Etosha National Park, Etosha Safari Camp gives you access to one of Africa's most celebrated wildlife sanctuaries. Enjoy an evening of delicious meals and sunset views.</p>
             <div class="lux-carousel">
@@ -600,7 +702,13 @@
                 <span class="lux-day-numeral">10</span>
                 <div class="lux-day-line"></div>
             </div>
-            <span class="lux-day-location">ETOSHA RESERVE — ONGUMA BUSH CAMP</span>
+            <div class="lux-day-location-wrapper">
+                <span class="lux-day-location">ETOSHA RESERVE — ONGUMA BUSH CAMP</span>
+                <button class="lux-view-map-btn">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    View Map
+                </button>
+            </div>
             <h2 class="lux-day-title">The Great Salt Pan</h2>
             <p class="lux-day-desc">Enjoy luxurious tented suites at Onguma, a private reserve bordering Etosha National Park. The tranquil setting allows for both thrilling game drives and romantic evenings by the campfire.</p>
             <div class="lux-carousel">
@@ -622,7 +730,13 @@
                 <span class="lux-day-numeral">12</span>
                 <div class="lux-day-line"></div>
             </div>
-            <span class="lux-day-location">OTJIWA NATURE RESERVE — EAGLE'S REST</span>
+            <div class="lux-day-location-wrapper">
+                <span class="lux-day-location">OTJIWA NATURE RESERVE — EAGLE'S REST</span>
+                <button class="lux-view-map-btn">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    View Map
+                </button>
+            </div>
             <h2 class="lux-day-title">Journey's End in Luxury</h2>
             <p class="lux-day-desc">End your Namibian adventure in luxury at Eagle's Rest. Nestled in the peaceful Otjiwa Nature Reserve, the lodge offers exceptional service and the chance to unwind with private bush walks or simply relax.</p>
             <div class="lux-carousel">
@@ -644,7 +758,13 @@
                 <span class="lux-day-numeral">14</span>
                 <div class="lux-day-line"></div>
             </div>
-            <span class="lux-day-location">WINDHOEK — HOSEA KUTAKO AIRPORT</span>
+            <div class="lux-day-location-wrapper">
+                <span class="lux-day-location">WINDHOEK — HOSEA KUTAKO AIRPORT</span>
+                <button class="lux-view-map-btn">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    View Map
+                </button>
+            </div>
             <h2 class="lux-day-title">Departure Bound</h2>
             <p class="lux-day-desc">After a breathtaking final morning in the Otjiwa reserve, make your way back down to the capital for your departure. Journey safely and take home an eternity of memories.</p>
         </div>
@@ -670,19 +790,22 @@
             parentNode = parentNode.parentElement;
         }
 
-        // Auto-show map on scroll, hide when stopped for 2 seconds
-        window.addEventListener('scroll', () => {
-            if (mapWidget) {
-                // Show map while scrolling (now triggers on mobile too)
-                mapWidget.classList.add('is-visible');
-                
-                clearTimeout(scrollTimeout);
-                scrollTimeout = setTimeout(() => {
-                    // Hide map when there is no movement for 2 seconds
-                    mapWidget.classList.remove('is-visible');
-                }, 2000); 
-            }
+        // Map View Toggle Logic
+        const closeMapBtn = document.getElementById('closeMapBtn');
+        const viewMapBtns = document.querySelectorAll('.lux-view-map-btn');
+        const mapContainer = document.getElementById('mapWidget');
+
+        viewMapBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                mapContainer.classList.add('is-visible');
+            });
         });
+
+        if (closeMapBtn) {
+            closeMapBtn.addEventListener('click', () => {
+                mapContainer.classList.remove('is-visible');
+            });
+        }
 
         // Setup Intersection Observer to detect which day is currently being viewed
         const observer = new IntersectionObserver((entries) => {
