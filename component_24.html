@@ -788,15 +788,37 @@
         const viewMapBtns = document.querySelectorAll('.lux-view-map-btn');
         const mapContainer = document.getElementById('mapWidget');
 
+        function updateMapState(isOpen) {
+            if (isOpen) {
+                mapContainer.classList.add('is-visible');
+            } else {
+                mapContainer.classList.remove('is-visible');
+            }
+            
+            // Sync all buttons
+            viewMapBtns.forEach(btn => {
+                if (isOpen) {
+                    btn.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> Close Map`;
+                    btn.style.backgroundColor = '#d87a4d';
+                    btn.style.color = '#ffffff';
+                } else {
+                    btn.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> View Map`;
+                    btn.style.backgroundColor = 'transparent';
+                    btn.style.color = '#d87a4d';
+                }
+            });
+        }
+
         viewMapBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                mapContainer.classList.add('is-visible');
+                const isCurrentlyOpen = mapContainer.classList.contains('is-visible');
+                updateMapState(!isCurrentlyOpen); // Toggle
             });
         });
 
         if (closeMapBtn) {
             closeMapBtn.addEventListener('click', () => {
-                mapContainer.classList.remove('is-visible');
+                updateMapState(false);
             });
         }
 
