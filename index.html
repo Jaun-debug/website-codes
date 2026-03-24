@@ -253,20 +253,7 @@
         "desc": "Extracted from SELF-DRIVE ITINERARY / 18 DAY HIDDEN TREASURES OF NAMIBIA SELF-DRIVE SAFARI.docx",
         "file": "component_20.html"
     },
-    {
-        "id": "component_21",
-        "title": "OLD DESERT TRACKS BLOG STYLE,,,,",
-        "tag": "Self-Drive Doc",
-        "desc": "Extracted from SELF-DRIVE ITINERARY / OLD DESERT TRACKS BLOG STYLE,,,,.docx",
-        "file": "component_21.html"
-    },
-    {
-        "id": "component_22",
-        "title": "DT-AG-SITEWIDE SINGLE BLOG CAPE CURTAIN DESIGN",
-        "tag": "Self-Drive Doc",
-        "desc": "Extracted from SELF-DRIVE ITINERARY / DT-AG-SITEWIDE SINGLE BLOG CAPE CURTAIN DESIGN.docx",
-        "file": "component_22.html"
-    },
+
     {
         "id": "component_23",
         "title": "17-DAY NAMIBIA, CHOBE & VIC FALLS  SELF-DRIVE SAFARI ",
@@ -298,6 +285,7 @@
             
             let addedSelfDriveHeader = false;
             let addedUIHeader = false;
+            let sdFolderList = null;
 
             components.forEach((cmp, idx) => {
                 // Add Folder Categories
@@ -308,13 +296,23 @@
                     container.appendChild(uiHeader);
                     addedUIHeader = true;
                 } else if (cmp.tag === 'Self-Drive Doc' && !addedSelfDriveHeader) {
-                    const sdHeader = document.createElement('div');
-                    sdHeader.style.cssText = "font-size: 0.75rem; text-transform: uppercase; color: var(--orange); margin: 25px 0 5px 5px; letter-spacing: 2px; font-weight: 700;";
-                    sdHeader.innerHTML = `
-                        <svg style="vertical-align: middle; margin-right: 4px; margin-top: -2px;" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                    const detailsNode = document.createElement('details');
+                    detailsNode.open = true; // Folders start open by default
+
+                    const summaryNode = document.createElement('summary');
+                    summaryNode.style.cssText = "font-size: 0.75rem; text-transform: uppercase; color: var(--orange); margin: 25px 0 5px 5px; letter-spacing: 2px; font-weight: 700; cursor: pointer; list-style: none; display: flex; align-items: center; user-select: none;";
+                    summaryNode.innerHTML = `
+                        <svg style="margin-right: 6px;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
                         Self-Drive Safaris
                     `;
-                    container.appendChild(sdHeader);
+                    
+                    // Create an inner wrapper for the buttons to maintain the grid gap styling
+                    sdFolderList = document.createElement('div');
+                    sdFolderList.style.cssText = "display: flex; flex-direction: column; gap: 8px; margin-top: 10px;";
+
+                    detailsNode.appendChild(summaryNode);
+                    detailsNode.appendChild(sdFolderList);
+                    container.appendChild(detailsNode);
                     addedSelfDriveHeader = true;
                 }
 
@@ -326,7 +324,13 @@
                         <span class="nav-item-title">${cmp.title}</span>
                     </div>
                 `;
-                container.appendChild(el);
+
+                // If it belongs to self-drive doc, put it in the expandable folder array! 
+                if (cmp.tag === 'Self-Drive Doc' && sdFolderList) {
+                    sdFolderList.appendChild(el);
+                } else {
+                    container.appendChild(el);
+                }
             });
         }
 
