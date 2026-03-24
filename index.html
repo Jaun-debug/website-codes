@@ -324,12 +324,13 @@
             
             renderNav();
             
+            const timestamp = new Date().getTime();
             const frame = document.getElementById('previewFrame');
-            frame.src = cmp.file;
+            frame.src = cmp.file + "?v=" + timestamp;
             frame.onload = () => { setTimeout(() => { document.getElementById('loader').classList.remove('active'); }, 300); };
             
             try {
-                const res = await fetch(cmp.file);
+                const res = await fetch(cmp.file + "?v=" + timestamp);
                 preloadedCode = await res.text();
             } catch(e) {
                 console.error("Failed to preload code");

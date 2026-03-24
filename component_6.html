@@ -653,6 +653,8 @@
 
         // Setup Intersection Observer to detect which day is currently being viewed
         const observer = new IntersectionObserver((entries) => {
+            // Find ALL intersecting entries, but we only want the one that is currently in view
+            // Actually, we can just process them in order for now.
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const dayId = entry.target.id;
@@ -669,7 +671,7 @@
             });
         }, {
             root: null,
-            rootMargin: "-20% 0px -60% 0px", // triggers when block scrolls near top of viewport
+            rootMargin: "-45% 0px -45% 0px", // triggers when block scrolls near the exact middle of viewport
             threshold: 0
         });
 
