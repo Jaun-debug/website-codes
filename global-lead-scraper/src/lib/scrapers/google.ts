@@ -17,7 +17,7 @@ export async function scrapeBing(query: string, apiKey?: string) {
                     'X-API-KEY': apiKey,
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ q: query, gl: 'us', num: 30 })
+                body: JSON.stringify({ q: query, gl: 'us', num: 80 })
             });
             const data = await res.json();
             

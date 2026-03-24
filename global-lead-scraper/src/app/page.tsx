@@ -1,8 +1,11 @@
 
 'use client';
 
-import { useState } from 'react';
-import { Search, Download, Trash2, Mail, Briefcase, Globe2, Loader2 } from 'lucide-react';
+// ------------------------------------
+// UI modifications extending page.tsx
+// ------------------------------------
+import { useState, useEffect } from 'react';
+import { Search, Download, Trash2, Mail, Briefcase, Globe2, Loader2, Save, FolderOpen, X } from 'lucide-react';
 
 export default function Home() {
   const [country, setCountry] = useState('');
@@ -13,6 +16,46 @@ export default function Home() {
   const [apiKey, setApiKey] = useState('');
   const [leads, setLeads] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
+
+  // Vault state
+  const [savedLists, setSavedLists] = useState<any[]>([]);
+  const [showVault, setShowVault] = useState(false);
+
+  useEffect(() => {
+      const stored = localStorage.getItem('leadVault');
+      if(stored) setSavedLists(JSON.parse(stored));
+  }, []);
+
+  const saveToVault = () => {
+      if(leads.length === 0) return alert("No leads to save!");
+      const listName = prompt("Enter a name for this list (e.g. 'German DMCs 2024'):");
+      if(!listName) return;
+
+      const newList = {
+          id: Date.now(),
+          name: listName,
+          date: new Date().toLocaleDateString(),
+          count: leads.length,
+          leads: [...leads]
+      };
+
+      const updated = [newList, ...savedLists];
+      setSavedLists(updated);
+      localStorage.setItem('leadVault', JSON.stringify(updated));
+      alert(`Successfully saved ${leads.length} leads to your Vault!`);
+  };
+
+  const deleteFromVault = (id: number) => {
+      if(!confirm("Are you sure you want to delete this list?")) return;
+      const updated = savedLists.filter(l => l.id !== id);
+      setSavedLists(updated);
+      localStorage.setItem('leadVault', JSON.stringify(updated));
+  };
+
+  const loadFromVault = (listLeads: any[]) => {
+      setLeads(listLeads);
+      setShowVault(false);
+  };
 
   const startScrape = async () => {
     if (!country) return alert("Enter a country.");
@@ -38,30 +81,68 @@ export default function Home() {
     setLoading(false);
   };
 
-  const exportCSV = () => {
+  const exportCSV = (dataToExport = leads, exportName = country) => {
       const headers = ["Company Name", "Country", "Industry", "Website", "Email", "Score", "Source"];
-      const rows = leads.map(l => [l.companyName, l.country, l.industry, l.website, l.email, l.score, l.source]);
+      const rows = dataToExport.map(l => [l.companyName, l.country, l.industry, l.website, l.email, l.score, l.source]);
       
       let csvContent = "data:text/csv;charset=utf-8," + headers.join(",") + "\n" + rows.map(e => `"${e.join('","')}"`).join("\n");
-      var encodedUri = encodeURI(csvContent);
-      var link = document.createElement("a");
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement("a");
       link.setAttribute("href", encodedUri);
-      link.setAttribute("download", `Global_Leads_${country}.csv`);
+      link.setAttribute("download", `Global_Leads_${exportName}.csv`);
       document.body.appendChild(link);
       link.click();
   };
 
   return (
-    <div className="min-h-screen bg-[#FDFBF7] text-[#2C2C2C] font-sans">
+    <div className="min-h-screen bg-[#FDFBF7] text-[#2C2C2C] font-sans relative">
       <header className="bg-[#1B2922] text-[#E8DCC4] py-6 shadow-md border-b-4 border-[#C19A6B]">
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
             <h1 className="text-3xl font-[Playfair_Display] font-semibold tracking-wide flex items-center gap-3">
                 <Globe2 className="w-8 h-8 text-[#C19A6B]" /> 
                 Global Lead Scraper
             </h1>
-            <div className="text-sm font-light text-[#A8A88B]">Advanced Sales Machine</div>
+            <div className="flex gap-4 items-center">
+                <button onClick={() => setShowVault(true)} className="flex items-center gap-2 text-sm font-semibold hover:text-white transition cursor-pointer">
+                    <FolderOpen className="w-5 h-5 text-[#C19A6B]" /> Vault ({savedLists.length})
+                </button>
+                <div className="text-sm border-l border-[#5A5A4A] pl-4 font-light text-[#A8A88B]">Advanced Sales Machine</div>
+            </div>
         </div>
       </header>
+
+      {/* VAULT MODAL */}
+      {showVault && (
+          <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex justify-center items-center p-6">
+              <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl overflow-hidden border-2 border-[#E0D5C1]">
+                  <div className="bg-[#F6F3EB] px-6 py-4 flex justify-between items-center border-b border-[#E0D5C1]">
+                      <h3 className="font-[Playfair_Display] text-xl font-semibold flex items-center gap-2"><FolderOpen className="w-5 h-5 text-[#C19A6B]"/> My Lead Vault</h3>
+                      <button onClick={() => setShowVault(false)} className="text-[#8A8A7A] hover:text-red-500 transition"><X /></button>
+                  </div>
+                  <div className="p-6 max-h-[60vh] overflow-y-auto bg-[#FDFBF7]">
+                      {savedLists.length === 0 ? (
+                          <div className="text-center py-10 text-[#5A5A4A]">No saved lists yet. Scrape some leads and hit "Save to Vault".</div>
+                      ) : (
+                          <div className="grid grid-cols-1 gap-4">
+                              {savedLists.map(list => (
+                                  <div key={list.id} className="bg-white p-4 rounded-lg border border-[#E0D5C1] shadow-sm flex justify-between items-center">
+                                      <div>
+                                          <h4 className="font-semibold text-lg">{list.name}</h4>
+                                          <p className="text-xs text-[#8A8A7A] mt-1">{list.leads.length} Leads • Saved on {list.date}</p>
+                                      </div>
+                                      <div className="flex gap-2">
+                                          <button onClick={() => loadFromVault(list.leads)} className="px-3 py-1.5 bg-[#F6F3EB] hover:bg-[#E0D5C1] text-sm font-semibold rounded transition text-[#2C2C2C]">Load</button>
+                                          <button onClick={() => exportCSV(list.leads, list.name)} className="px-3 py-1.5 border border-[#C19A6B] hover:bg-[#C19A6B] hover:text-white text-sm font-semibold rounded transition text-[#C19A6B]">Export</button>
+                                          <button onClick={() => deleteFromVault(list.id)} className="px-3 py-1.5 border border-red-200 hover:bg-red-50 text-sm font-semibold rounded transition text-red-500"><Trash2 className="w-4 h-4" /></button>
+                                      </div>
+                                  </div>
+                              ))}
+                          </div>
+                      )}
+                  </div>
+              </div>
+          </div>
+      )}
 
       <main className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 lg:grid-cols-4 gap-8">
         
@@ -136,7 +217,10 @@ export default function Home() {
                         <p className="text-xs text-[#8A8A7A] mt-1">{leads.length} Qualified Leads Found</p>
                     </div>
                     <div className="flex gap-3">
-                        <button onClick={exportCSV} disabled={leads.length===0} className="px-4 py-2 border border-[#C19A6B] text-[#C19A6B] hover:bg-[#C19A6B] hover:text-white rounded text-sm font-semibold transition flex items-center gap-2 disabled:opacity-50">
+                        <button onClick={saveToVault} disabled={leads.length===0} className="px-3 py-2 bg-white border border-[#D5CBB8] text-[#5A5A4A] hover:border-[#C19A6B] hover:text-[#C19A6B] rounded text-sm font-semibold transition flex items-center gap-2 disabled:opacity-50">
+                            <Save className="w-4 h-4" /> Save to Vault
+                        </button>
+                        <button onClick={() => exportCSV()} disabled={leads.length===0} className="px-4 py-2 bg-[#1B2922] text-[#E8DCC4] hover:bg-[#2C3E34] rounded text-sm font-semibold transition flex items-center gap-2 disabled:opacity-50">
                             <Download className="w-4 h-4" /> Export CSV
                         </button>
                     </div>
