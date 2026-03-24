@@ -1,528 +1,693 @@
-<div class="itinerary-master-page">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>14-Day Namibia Comfort Safari</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
     <style>
-        .itinerary-master-page {
-            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #ffffff;
-            color: #2c2c2c;
+        html, body {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
-            line-height: 1.6;
-            position: relative;
+            font-family: 'Inter', sans-serif;
+            color: #222;
+            background-color: #ffffff;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        .itinerary-master-page *, .itinerary-master-page *::before, .itinerary-master-page *::after {
+        *, *::before, *::after {
             box-sizing: inherit;
         }
 
-        /* Full Width Hero Header */
-        .imp-hero {
-            position: relative;
-            width: 100vw;
-            margin-left: calc(-50vw + 50%);
-            height: 85vh; 
-            min-height: 550px;
+        .lux-container {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            overflow: hidden; 
-        }
-
-        .imp-hero img {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 0;
-            animation: impHeroZoom 10s ease-out forwards; 
-        }
-
-        @keyframes impHeroZoom {
-            0% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-
-        .imp-hero-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.4);
-            z-index: 1;
-        }
-
-        .imp-hero-content {
-            position: relative;
-            z-index: 2;
-            padding: 2rem;
-            color: #ffffff !important;
-            max-width: 60rem;
-        }
-
-        .imp-hero-title {
-            font-family: "Playfair Display", serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 400;
-            margin: 0 0 1rem 0;
-            letter-spacing: 0.05em;
-            text-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            text-transform: uppercase;
-            color: #ffffff !important; 
-        }
-
-        .imp-hero-subtitle {
-            font-size: 1.25rem;
-            font-weight: 300;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
-            margin: 0;
-            color: #ffffff !important; 
-        }
-
-        /* Main Content Layout */
-        .imp-container {
-            max-width: 80rem;
-            margin: 0 auto;
-            padding: 4rem 1.5rem;
-        }
-
-        .imp-layout {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 4rem;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         @media (min-width: 1024px) {
-            .imp-layout {
-                grid-template-columns: 2fr 1fr; 
-                align-items: stretch; 
+            .lux-container {
+                flex-direction: row;
             }
         }
 
-        /* Typography & Sections */
-        .imp-section {
-            margin-bottom: 4rem;
+        /* LEFT SIDE: Sticky Hero */
+        .lux-left {
+            position: relative;
+            width: 100%;
+            height: 60vh;
+            background-image: url('https://desert-tracks.com/wp-content/uploads/2024/04/Solly-Levi-Sossusvlei-1.jpg');
+            background-size: cover;
+            background-position: center;
         }
 
-        .imp-section-title {
-            font-family: "Playfair Display", serif;
-            font-size: 2rem;
-            color: #2c2c2c !important;
-            border-bottom: 1px solid #e5e5e5;
-            padding-bottom: 1rem;
-            margin-bottom: 2rem;
-            font-weight: 400;
-            letter-spacing: 0.02em;
+        @media (min-width: 1024px) {
+            .lux-left {
+                width: 50vw;
+                height: 100vh;
+                position: sticky;
+                top: 0;
+            }
+        }
+
+        .lux-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0) 20%, rgba(0,0,0,0.85) 100%);
+        }
+
+        /* Hero Content */
+        .lux-hero-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            padding: 2.5rem;
+            color: #ffffff;
+            width: 100%;
+        }
+
+        @media (min-width: 1024px) {
+            .lux-hero-content {
+                padding: 4rem 5rem;
+            }
+        }
+
+        /* Interactive Map Widget */
+        .lux-interactive-map {
+            display: none; /* Hide on mobile */
+            position: absolute;
+            top: 3rem;
+            right: 3rem;
+            width: 320px;
+            height: 480px;
+            background: rgba(248, 243, 235, 0.45); /* ~50% closer to transparent */
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(210, 200, 185, 0.4);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15); /* softer shadow */
+            z-index: 10;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(20px);
+            transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .lux-interactive-map.is-visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        @media (min-width: 1024px) {
+            .lux-interactive-map {
+                display: block;
+            }
+        }
+
+        .lux-interactive-map img.map-bg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.15; /* Hint of a map */
+            mix-blend-mode: multiply;
+        }
+
+        /* Map Pins */
+        .lux-map-pin {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 50%;
+            border: 1px solid rgba(0, 0, 0, 0.15); /* Very thin circle */
+            color: #111111;
+            font-size: 0.65rem;
+            font-weight: 300; /* Light weight */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+        .lux-map-pin.is-active {
+            background-color: #d87a4d;
+            border-color: #d87a4d;
+            color: #ffffff;
+            transform: translate(-50%, -50%) scale(1.3);
+            box-shadow: 0 0 15px rgba(216, 122, 77, 0.5);
+            z-index: 20;
+        }
+
+        .lux-map-pin .pin-text {
+            display: block;
+        }
+
+        .lux-map-pin .pin-car {
+            display: none;
+            width: 14px;
+            height: 14px;
+        }
+
+        .lux-map-pin.is-active .pin-text {
+            display: none;
+        }
+
+        .lux-map-pin.is-active .pin-car {
+            display: block;
+        }
+
+        .lux-map-pin .pin-label {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 6px;
+            font-size: 0.45rem;
+            color: #111111; /* Dark text for better reading */
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.8s ease 0.2s;
+            font-weight: 300; /* Light weight */
+            letter-spacing: 1.5px;
             text-transform: uppercase;
+            text-shadow: none; /* No shadow */
+            pointer-events: none;
         }
 
-        .imp-text {
-            color: #555555;
-            font-weight: 300;
+        .lux-map-pin.is-active .pin-label {
+            opacity: 1;
+        }
+
+        /* Text Elements */
+        .lux-tag-small {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            font-weight: 500;
+            color: #e5e5e5;
+            margin-bottom: 1rem;
+        }
+
+        .lux-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 4vw, 4.5rem);
+            font-weight: 400;
+            line-height: 1.1;
+            margin: 0 0 1rem 0;
+            letter-spacing: -0.02em;
+        }
+
+        .lux-subtitle {
             font-size: 1.1rem;
-            line-height: 1.8;
+            font-weight: 300;
+            color: #cccccc;
+            margin: 0;
+            letter-spacing: 0.02em;
+        }
+
+        /* RIGHT SIDE: Scrollable Content */
+        .lux-right {
+            width: 100%;
+            padding: 4rem 2rem 40vh 2rem;
+            background-color: #ffffff;
+        }
+
+        @media (min-width: 1024px) {
+            .lux-right {
+                width: 50vw;
+                padding: 6rem 4rem 40vh 2.5rem;
+            }
+        }
+
+        .lux-welcome-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            font-weight: 600;
+            color: #888888;
             margin-bottom: 1.5rem;
         }
 
-        /* Day-by-Day Accordion */
-        .imp-day {
-            border-bottom: 1px solid #e5e5e5;
+        .lux-intro {
+            font-size: 1.4rem;
+            line-height: 1.7;
+            font-weight: 400;
+            color: #333333;
+            margin-bottom: 5rem;
+            max-width: 45rem;
         }
 
-        .imp-day summary {
-            font-family: "Playfair Display", serif;
-            font-size: 1.35rem;
-            font-weight: 500;
-            color: #2c2c2c;
-            padding: 1.5rem 0;
-            cursor: pointer;
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: color 0.3s ease;
-        }
-
-        .imp-day summary:hover {
-            color: #d87a4d;
-        }
-
-        .imp-day summary::-webkit-details-marker {
-            display: none; 
-        }
-
-        .imp-day summary::after {
-            content: '+';
-            font-family: system-ui, sans-serif;
-            font-size: 1.75rem;
-            font-weight: 300;
-            color: #d87a4d;
-        }
-
-        .imp-day[open] summary::after {
-            content: '−';
-        }
-
-        .imp-day-content {
-            padding-bottom: 2rem;
-            color: #555555;
-            font-weight: 300;
-            font-size: 1.05rem;
-        }
-
-        /* ==== THE CAROUSEL STYLES ==== */
-        .imp-day-carousel {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            gap: 1rem;
-            padding-bottom: 1rem;
-            margin: 1rem 0 1.5rem 0;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: thin;
-            scrollbar-color: #d87a4d #f0eee9;
-        }
-
-        .imp-day-carousel::-webkit-scrollbar {
-            height: 6px;
-        }
-        .imp-day-carousel::-webkit-scrollbar-track {
-            background: #f0eee9;
-            border-radius: 4px;
-        }
-        .imp-day-carousel::-webkit-scrollbar-thumb {
-            background: #d87a4d;
-            border-radius: 4px;
-        }
-
-        .imp-day-carousel img {
-            /* Since there's only one image currently, let's make it fill 100% on mobile too so it looks perfect */
-            flex: 0 0 100%;
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            scroll-snap-align: center;
-            border-radius: 4px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        @media (min-width: 768px) {
-            .imp-day-carousel img {
-                flex: 0 0 100%; 
-                scroll-snap-align: start;
+        @media (min-width: 1024px) {
+            .lux-intro {
+                font-size: 1.6rem;
+                margin-bottom: 7rem;
             }
         }
 
-        .imp-day-meta {
-            margin-top: 1.5rem;
-            background: #f9f9f4;
-            padding: 1.5rem;
-            border-radius: 4px;
-            border-left: 3px solid #d87a4d;
+        /* Day Block Styling */
+        .lux-day-block {
+            margin-bottom: 6rem;
+            max-width: 45rem;
         }
 
-        .imp-day-meta p {
-            margin: 0 0 0.5rem 0;
-            font-size: 0.95rem;
-        }
-
-        .imp-day-meta p:last-child {
-            margin: 0;
-        }
-
-        .imp-day-meta strong {
-            color: #2c2c2c !important;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-size: 0.8rem;
-            margin-right: 0.5rem;
-        }
-
-        /* Sticky Sidebar FIX */
-        .imp-sidebar-wrapper {
-            position: relative;
-            height: 100%; 
-        }
-
-        .imp-sidebar {
-            background-color: #f9f9f4;
-            padding: 2.5rem 2rem;
-            border-radius: 4px;
-            border-top: 4px solid #d87a4d;
-            
-            position: -webkit-sticky;
-            position: sticky;
-            top: 130px; 
-            z-index: 10;
-        }
-
-        .imp-price {
-            font-family: "Playfair Display", serif;
-            font-size: 2.5rem;
-            color: #2c2c2c !important;
-            margin: 0 0 0.5rem 0;
-            font-weight: 400;
-        }
-
-        .imp-price span {
-            font-family: ui-sans-serif, system-ui, sans-serif;
-            font-size: 1rem;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .imp-glance-list {
-            list-style: none;
-            padding: 0;
-            margin: 2rem 0;
-        }
-
-        .imp-glance-list li {
-            padding: 1rem 0;
-            border-bottom: 1px solid rgba(0,0,0,0.08);
+        .lux-day-number-row {
             display: flex;
-            justify-content: space-between;
-            font-size: 1.05rem;
-            color: #666;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
         }
 
-        .imp-glance-list li:last-child {
-            border-bottom: none;
+        .lux-day-numeral {
+            font-size: 4rem;
+            font-weight: 300;
+            color: #e6e6e6;
+            line-height: 1;
+            letter-spacing: -0.05em;
         }
 
-        .imp-glance-list strong {
-            font-weight: 500;
-            color: #2c2c2c !important;
-            text-align: right;
+        .lux-day-line {
+            flex-grow: 1;
+            height: 1px;
+            background-color: #f0f0f0;
         }
 
-        .imp-btn {
-            display: block;
-            width: 100%;
-            text-align: center;
-            background-color: #d87a4d;
-            color: #ffffff !important;
-            padding: 1.25rem;
-            font-size: 0.9rem;
-            font-weight: 700;
+        .lux-day-location {
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.2em;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-            border-radius: 2px;
+            font-weight: 600;
+            color: #777777;
+            margin: 0 0 0.75rem 0;
+            display: block;
         }
 
-        .imp-btn:hover {
-            background-color: #be653a;
+        .lux-day-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 400;
+            margin: 0 0 1rem 0;
+            color: #111111;
+            letter-spacing: 0.02em;
         }
-        
-        .imp-highlights {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+
+        .lux-day-desc {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #555555;
+            font-weight: 300;
+            margin-bottom: 2.5rem;
+        }
+
+        /* Elegant Carousel */
+        .lux-carousel {
+            display: flex;
             gap: 1rem;
-            margin-top: 2rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            margin-right: -2rem; 
+            padding-right: 2rem;
         }
         
-        .imp-highlight-tag {
-            background: #f0eee9;
-            padding: 0.75rem 1rem;
+        @media (min-width: 1024px) {
+            .lux-carousel {
+                margin-right: -4rem; 
+                padding-right: 4rem;
+            }
+        }
+
+        .lux-carousel::-webkit-scrollbar {
+            display: none; 
+        }
+
+        .lux-carousel img {
+            flex: 0 0 85%;
+            height: 380px;
+            object-fit: cover;
             border-radius: 4px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: #2c2c2c !important;
-            text-align: center;
-            letter-spacing: 0.05em;
+            scroll-snap-align: start;
+        }
+
+        @media (min-width: 768px) {
+            .lux-carousel img {
+                flex: 0 0 75%;
+                height: 420px;
+            }
+        }
+
+        /* Scroll Hint Arrow */
+        @keyframes flashOrangeRight {
+            0%, 100% { opacity: 1; transform: translateX(0); }
+            50% { opacity: 0.4; transform: translateX(6px); }
+        }
+
+        .lux-scroll-hint {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            margin-top: 0.75rem;
+            color: #d87a4d;
+            margin-right: -1rem;
+        }
+        
+        @media (min-width: 1024px) {
+            .lux-scroll-hint {
+                margin-right: 0; 
+            }
+        }
+
+        .lux-scroll-hint svg {
+            width: 24px;
+            height: 24px;
+            animation: flashOrangeRight 1.5s infinite ease-in-out;
         }
     </style>
+</head>
+<body>
 
-    <!-- 1. HERO HEADER AREA -->
-    <div class="imp-hero">
-        <img src="https://desert-tracks.com/wp-content/uploads/2024/04/Solly-Levi-Sossusvlei-1.jpg" alt="14-Day Namibia Self-Drive Safari">
-        <div class="imp-hero-overlay"></div>
-        <div class="imp-hero-content">
-            <h1 class="imp-hero-title">14-Day Namibia Self-Drive</h1>
-            <p class="imp-hero-subtitle">Comfort Safari</p>
+<div class="lux-container">
+    
+    <!-- LEFT PANEL: Sticky Hero Anchor -->
+    <div class="lux-left">
+        <div class="lux-overlay"></div>
+        
+        <!-- Interactive Map Widget Overlay (Appears on scroll) -->
+        <div class="lux-interactive-map">
+            <!-- Authentic Namibia Map Background -->
+            <img src="../desert-tracks-dashboard/assets/namibia-rustic-map.svg" alt="Namibia Map Route" class="map-bg">
+            
+            <!-- Map Pins (Approximate layout matching the Wetu loop) -->
+            <div class="lux-map-pin" data-target="day-1 day-14" style="top: 55%; left: 47%;">
+                <span class="pin-text">1</span>
+                <svg class="pin-car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 14h14M3 8h11M14 8l3 6h4v4h-3M3 8v10h2M16 11v-3M3 8C3 7 4 6 5 6h9l2 2v3"></path><circle cx="7" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg>
+                <span class="pin-label">Windhoek</span>
+            </div>
+            <div class="lux-map-pin" data-target="day-2" style="top: 70%; left: 55%;">
+                <span class="pin-text">2</span>
+                <svg class="pin-car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 14h14M3 8h11M14 8l3 6h4v4h-3M3 8v10h2M16 11v-3M3 8C3 7 4 6 5 6h9l2 2v3"></path><circle cx="7" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg>
+                <span class="pin-label">Kalahari</span>
+            </div>
+            <div class="lux-map-pin" data-target="day-3" style="top: 65%; left: 28%;">
+                <span class="pin-text">3</span>
+                <svg class="pin-car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 14h14M3 8h11M14 8l3 6h4v4h-3M3 8v10h2M16 11v-3M3 8C3 7 4 6 5 6h9l2 2v3"></path><circle cx="7" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg>
+                <span class="pin-label">Sossusvlei</span>
+            </div>
+            <div class="lux-map-pin" data-target="day-5" style="top: 55%; left: 16%;">
+                <span class="pin-text">4</span>
+                <svg class="pin-car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 14h14M3 8h11M14 8l3 6h4v4h-3M3 8v10h2M16 11v-3M3 8C3 7 4 6 5 6h9l2 2v3"></path><circle cx="7" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg>
+                <span class="pin-label">Swakopmund</span>
+            </div>
+            <div class="lux-map-pin" data-target="day-7" style="top: 38%; left: 20%;">
+                <span class="pin-text">5</span>
+                <svg class="pin-car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 14h14M3 8h11M14 8l3 6h4v4h-3M3 8v10h2M16 11v-3M3 8C3 7 4 6 5 6h9l2 2v3"></path><circle cx="7" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg>
+                <span class="pin-label">Damaraland</span>
+            </div>
+            <div class="lux-map-pin" data-target="day-9" style="top: 25%; left: 40%;">
+                <span class="pin-text">6</span>
+                <svg class="pin-car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 14h14M3 8h11M14 8l3 6h4v4h-3M3 8v10h2M16 11v-3M3 8C3 7 4 6 5 6h9l2 2v3"></path><circle cx="7" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg>
+                <span class="pin-label">Etosha South</span>
+            </div>
+            <div class="lux-map-pin" data-target="day-10" style="top: 20%; left: 55%;">
+                <span class="pin-text">7</span>
+                <svg class="pin-car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 14h14M3 8h11M14 8l3 6h4v4h-3M3 8v10h2M16 11v-3M3 8C3 7 4 6 5 6h9l2 2v3"></path><circle cx="7" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg>
+                <span class="pin-label">East Etosha</span>
+            </div>
+            <div class="lux-map-pin" data-target="day-12" style="top: 40%; left: 47%;">
+                <span class="pin-text">8</span>
+                <svg class="pin-car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 14h14M3 8h11M14 8l3 6h4v4h-3M3 8v10h2M16 11v-3M3 8C3 7 4 6 5 6h9l2 2v3"></path><circle cx="7" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg>
+                <span class="pin-label">Otjiwa</span>
+            </div>
+        </div>
+
+        <div class="lux-hero-content">
+            <div class="lux-tag-small">DESERT TRACKS EXCLUSIVE</div>
+            <h1 class="lux-title">14-Day Namibia<br>Comfort Safari</h1>
+            <p class="lux-subtitle">A bespoke self-drive journey through iconic landscapes</p>
         </div>
     </div>
 
-    <div class="imp-container">
-        <div class="imp-layout">
-            
-            <!-- 2. MAIN CONTENT AREA (Left Side) -->
-            <div class="imp-main">
-                
-                <section class="imp-section">
-                    <h2 class="imp-section-title">Overview</h2>
-                    <p class="imp-text">This exclusive Namibian journey takes you through the country's most iconic landscapes, blending adventure and relaxation at every turn. From the red dunes of the Kalahari to the coastal charm of Swakopmund, you'll experience the thrill of exploring ancient deserts, witnessing wildlife in Etosha, and uncovering cultural gems like Damaraland's rock art.</p>
-                    
-                    <div class="imp-highlights">
-                        <div class="imp-highlight-tag">Sossusvlei Dunes</div>
-                        <div class="imp-highlight-tag">Etosha National Park</div>
-                        <div class="imp-highlight-tag">Damaraland</div>
-                        <div class="imp-highlight-tag">Swakopmund</div>
-                        <div class="imp-highlight-tag">Kalahari Desert</div>
-                        <div class="imp-highlight-tag">Waterberg</div>
-                    </div>
-                </section>
+    <!-- RIGHT PANEL: Scrolling Story -->
+    <div class="lux-right">
+        
+        <div class="lux-welcome-tag">WELCOME</div>
+        <p class="lux-intro">Prepare for an unforgettable adventure. This exclusive Namibian journey takes you through the country's most iconic landscapes, blending adventure and relaxation at every turn. From the red dunes of the Kalahari to the coastal charm of Swakopmund, you'll experience the thrill of exploring ancient deserts and witnessing spectacular wildlife.</p>
 
-                <section class="imp-section">
-                    <h2 class="imp-section-title">Itinerary</h2>
-                    
-                    <!-- DAY 1-2 -->
-                    <details class="imp-day" open>
-                        <summary>Day 1 - 2: Ti Melen Boutique Guesthouse</summary>
-                        <div class="imp-day-content">
-                            <p>Experience the charm of Windhoek in a boutique guesthouse blending modern comforts with local warmth. Spend your first night in Namibia surrounded by the intimate atmosphere of Ti Melen, ideal for a peaceful start to your adventure.</p>
-                            
-                            <div class="imp-day-carousel">
-                                <img src="https://desert-tracks.com/wp-content/uploads/2025/10/oryx-walking-in-sossusvlei-namibialarge_235kb.jpeg" alt="Windhoek Arrival">
-                            </div>
-                            
-                            <div class="imp-day-meta">
-                                <p><strong>Lodge:</strong> Ti Melen Boutique Guesthouse</p>
-                                <p><strong>Location:</strong> Windhoek</p>
-                            </div>
-                        </div>
-                    </details>
-
-                    <!-- DAY 2-3 -->
-                    <details class="imp-day">
-                        <summary>Day 2 - 3: Kalahari Anib Lodge</summary>
-                        <div class="imp-day-content">
-                            <p>Discover the beauty of the Kalahari at this eco-friendly lodge. The towering red dunes and starry nights set the perfect backdrop for a romantic evening. Enjoy delicious cuisine and desert exploration before retreating to your cozy room.</p>
-                            
-                            <div class="imp-day-carousel">
-                                <img src="https://desert-tracks.com/wp-content/uploads/2025/01/Bagatelle-Lodge-Kalahari-Game-Ranch-Namibia-Guest-Room-terrace-at-sunset.jpg" alt="Kalahari Lodge">
-                            </div>
-                            
-                            <div class="imp-day-meta">
-                                <p><strong>Lodge:</strong> Kalahari Anib Lodge</p>
-                                <p><strong>Location:</strong> Kalahari Desert</p>
-                            </div>
-                        </div>
-                    </details>
-
-                    <!-- DAY 3-5 -->
-                    <details class="imp-day">
-                        <summary>Day 3 - 5: Desert Homestead Lodge</summary>
-                        <div class="imp-day-content">
-                            <p>Immerse yourself in the surreal beauty of the Namib Desert. Stay at Desert Homestead, nestled between the red dunes of Sossusvlei, where you can explore the world's tallest dunes and return to luxury at the lodge for intimate sunset views.</p>
-                            
-                            <div class="imp-day-carousel">
-                                <img src="https://desert-tracks.com/wp-content/uploads/2024/04/Solly-Levi-Sossusvlei-1.jpg" alt="Sossusvlei Landscape">
-                            </div>
-                            
-                            <div class="imp-day-meta">
-                                <p><strong>Lodge:</strong> Desert Homestead Lodge</p>
-                                <p><strong>Location:</strong> Sossusvlei</p>
-                            </div>
-                        </div>
-                    </details>
-
-                    <!-- DAY 5-7 -->
-                    <details class="imp-day">
-                        <summary>Day 5 - 7: Swakopmund Guesthouse</summary>
-                        <div class="imp-day-content">
-                            <p>Blend adventure with relaxation at this charming guesthouse in Swakopmund, offering easy access to the beach and colonial-style comforts. Explore the unique coastal town with its German heritage, or unwind with a stroll along the ocean.</p>
-                            
-                            <div class="imp-day-carousel">
-                                <img src="https://desert-tracks.com/wp-content/uploads/2025/10/swakopmund.jpg" alt="Swakopmund">
-                            </div>
-                            
-                            <div class="imp-day-meta">
-                                <p><strong>Lodge:</strong> Swakopmund Guesthouse</p>
-                                <p><strong>Location:</strong> Swakopmund</p>
-                            </div>
-                        </div>
-                    </details>
-                    
-                    <!-- DAY 7-9 -->
-                    <details class="imp-day">
-                        <summary>Day 7 - 9: Lodge Damaraland</summary>
-                        <div class="imp-day-content">
-                            <p>In the heart of Damaraland, experience timeless landscapes and ancient rock art. Stay in a comfortable lodge designed to blend with its surroundings, offering exciting excursions to explore the desert's hidden gems, including desert elephants.</p>
-                            
-                            <div class="imp-day-carousel">
-                                <img src="https://desert-tracks.com/wp-content/uploads/2025/10/donkey-cart-solly-damaraland-large-e1759762704657-6.jpeg" alt="Damaraland Local Scene">
-                            </div>
-                            
-                            <div class="imp-day-meta">
-                                <p><strong>Lodge:</strong> Lodge Damaraland</p>
-                                <p><strong>Location:</strong> Damaraland</p>
-                            </div>
-                        </div>
-                    </details>
-
-                    <!-- DAY 9-10 -->
-                    <details class="imp-day">
-                        <summary>Day 9 - 10: Etosha Safari Camp</summary>
-                        <div class="imp-day-content">
-                            <p>Set near the southern entrance to Etosha National Park, Etosha Safari Camp gives you access to one of Africa's most celebrated wildlife sanctuaries. Enjoy an evening of delicious meals and sunset views before heading into the park for safari adventures.</p>
-                            
-                            <div class="imp-day-carousel">
-                                <img src="https://desert-tracks.com/wp-content/uploads/2025/10/elephant-springbok-etosha-solly-large-e1759762664136.jpeg" alt="Etosha Safari Animals">
-                            </div>
-                            
-                            <div class="imp-day-meta">
-                                <p><strong>Lodge:</strong> Etosha Safari Camp</p>
-                                <p><strong>Location:</strong> Etosha National Park</p>
-                            </div>
-                        </div>
-                    </details>
-
-                    <!-- DAY 10-12 -->
-                    <details class="imp-day">
-                        <summary>Day 10 - 12: Onguma Bush Camp</summary>
-                        <div class="imp-day-content">
-                            <p>Enjoy luxurious tented suites at Onguma, a private reserve bordering Etosha National Park. The tranquil setting allows for both thrilling game drives and romantic evenings. Unwind by the campfire after an exciting day of wildlife watching.</p>
-                            
-                            <div class="imp-day-carousel">
-                                <img src="https://desert-tracks.com/wp-content/uploads/2025/10/giraffe-botswana.jpeg" alt="Safari Wildlife">
-                            </div>
-                            
-                            <div class="imp-day-meta">
-                                <p><strong>Lodge:</strong> Onguma Bush Camp</p>
-                                <p><strong>Location:</strong> Etosha Border Reserve</p>
-                            </div>
-                        </div>
-                    </details>
-
-                    <!-- DAY 12-14 -->
-                    <details class="imp-day">
-                        <summary>Day 12 - 14: Otjiwa Collection - Eagle's Rest</summary>
-                        <div class="imp-day-content">
-                            <p>End your Namibian adventure in luxury at Eagle's Rest. Nestled in the peaceful Otjiwa Nature Reserve, the lodge offers exceptional service and the chance to unwind with private bush walks, spa treatments, or simply relax in your charming accommodation.</p>
-                            
-                            <div class="imp-day-carousel">
-                                <img src="https://desert-tracks.com/wp-content/uploads/2025/10/fish-river-canyon-viola-large-e1759762247457-2.jpeg" alt="Otjiwa Nature">
-                            </div>
-                            
-                            <div class="imp-day-meta">
-                                <p><strong>Lodge:</strong> Otjiwa Collection - Eagle's Rest</p>
-                                <p><strong>Location:</strong> Otjiwa Nature Reserve</p>
-                            </div>
-                        </div>
-                    </details>
-
-                </section>
+        <!-- DAY 1-2 -->
+        <div class="lux-day-block" id="day-1">
+            <div class="lux-day-number-row">
+                <span class="lux-day-numeral">01</span>
+                <div class="lux-day-line"></div>
             </div>
-
-            <!-- 3. SIDEBAR AREA (Right Side) -->
-            <div class="imp-sidebar-wrapper">
-                <div class="imp-sidebar">
-                    <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-top: 0; color: #2c2c2c !important; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 1rem;">At a Glance</h3>
-                    
-                    <ul class="imp-glance-list">
-                        <li><span>Duration</span> <strong>14 Days</strong></li>
-                        <li><span>Travel Style</span> <strong>Self-Drive</strong></li>
-                        <li><span>Destinations</span> <strong style="max-width: 60%;">Windhoek, Sossusvlei, Etosha & more</strong></li>
-                    </ul>
-
-                    <a href="https://desert-tracks.com/contact/" class="imp-btn" style="margin-top: 2rem;">Enquire Now</a>
-                </div>
+            <span class="lux-day-location">WINDHOEK — TI MELEN BOUTIQUE GUESTHOUSE</span>
+            <h2 class="lux-day-title">Arrival in Windhoek</h2>
+            <p class="lux-day-desc">Experience the charm of Windhoek in a boutique guesthouse blending modern comforts with local warmth. Spend your first night in Namibia surrounded by the intimate atmosphere of Ti Melen, ideal for a peaceful start to your adventure.</p>
+            <div class="lux-carousel">
+                <img src="https://wetu.com/imageHandler/c1920x1080/55342/143a4578.jpg?fmt=jpg" alt="Ti Melen Exterior">
+                <img src="https://wetu.com/imageHandler/c1920x1080/55342/img_4373.jpg?fmt=jpg" alt="Ti Melen Terrace">
+                <img src="https://wetu.com/imageHandler/c1920x1080/55342/img_4408.jpg?fmt=jpg" alt="Ti Melen Pool">
             </div>
-
+            <div class="lux-scroll-hint">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </div>
         </div>
+
+        <!-- DAY 2-3 -->
+        <div class="lux-day-block" id="day-2">
+            <div class="lux-day-number-row">
+                <span class="lux-day-numeral">02</span>
+                <div class="lux-day-line"></div>
+            </div>
+            <span class="lux-day-location">KALAHARI DESERT — KALAHARI ANIB LODGE</span>
+            <h2 class="lux-day-title">Journey to the Kalahari</h2>
+            <p class="lux-day-desc">Discover the beauty of the Kalahari at this eco-friendly lodge. The towering red dunes and starry nights set the perfect backdrop for a romantic evening. Enjoy luxurious cuisine and desert exploration before retreating to your cozy room.</p>
+            <div class="lux-carousel">
+                <img src="https://wetu.com/imageHandler/c1920x1080/31966/anib2016-8826.jpg?fmt=jpg" alt="Kalahari Anib Lodge">
+                <img src="https://wetu.com/imageHandler/c1920x1080/31966/gondwana_collection_-_kalahari_anib_lodge_00018.jpg?fmt=jpg" alt="Dining Area">
+                <img src="https://wetu.com/imageHandler/c1920x1080/31966/anib2016-8819.jpg?fmt=jpg" alt="Comfort Room">
+            </div>
+            <div class="lux-scroll-hint">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </div>
+        </div>
+
+        <!-- DAY 3-5 -->
+        <div class="lux-day-block" id="day-3">
+            <div class="lux-day-number-row">
+                <span class="lux-day-numeral">03</span>
+                <div class="lux-day-line"></div>
+            </div>
+            <span class="lux-day-location">SOSSUSVLEI — DESERT HOMESTEAD LODGE</span>
+            <h2 class="lux-day-title">Dunes of Sossusvlei</h2>
+            <p class="lux-day-desc">Immerse yourself in the surreal beauty of the Namib Desert. Stay at Desert Homestead, nestled between the red dunes, where you can explore the world's tallest dunes and return to luxury at the lodge for intimate sunset views.</p>
+            <div class="lux-carousel">
+                <img src="https://wetu.com/imageHandler/c1920x1080/10515/ondili_desert_homestead_venture_media--23.jpg?fmt=jpg" alt="Desert Homestead Lodge View">
+                <img src="https://wetu.com/imageHandler/c1920x1080/10515/img_68201.jpg?fmt=jpg" alt="Desert Homestead Pool">
+                <img src="https://wetu.com/imageHandler/c1920x1080/468/Namib%201%201.jpg?fmt=jpg" alt="Sossusvlei Dunes">
+            </div>
+            <div class="lux-scroll-hint">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </div>
+        </div>
+
+        <!-- DAY 5-7 -->
+        <div class="lux-day-block" id="day-5">
+            <div class="lux-day-number-row">
+                <span class="lux-day-numeral">05</span>
+                <div class="lux-day-line"></div>
+            </div>
+            <span class="lux-day-location">SWAKOPMUND — SWAKOPMUND GUESTHOUSE</span>
+            <h2 class="lux-day-title">Coastal Charm</h2>
+            <p class="lux-day-desc">Blend adventure with relaxation at this charming guesthouse in Swakopmund, offering easy access to the beach and colonial-style comforts. Explore the unique coastal town with its German heritage, or unwind with a stroll along the ocean.</p>
+            <div class="lux-carousel">
+                <img src="https://wetu.com/imageHandler/c1920x1080/149035/exterior_24.jpg?fmt=jpg" alt="Swakopmund Guesthouse">
+                <img src="https://wetu.com/imageHandler/c1920x1080/149035/marcbass_swakopgh_renew_-_courtyard1.jpg?fmt=jpg" alt="Courtyard">
+                <img src="https://wetu.com/imageHandler/c1920x1080/471/Swakop_3.jpg?fmt=jpg" alt="Swakopmund Town">
+            </div>
+            <div class="lux-scroll-hint">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </div>
+        </div>
+
+        <!-- DAY 7-9 -->
+        <div class="lux-day-block" id="day-7">
+            <div class="lux-day-number-row">
+                <span class="lux-day-numeral">07</span>
+                <div class="lux-day-line"></div>
+            </div>
+            <span class="lux-day-location">DAMARALAND — LODGE DAMARALAND</span>
+            <h2 class="lux-day-title">Ancient Landscapes</h2>
+            <p class="lux-day-desc">In the heart of Damaraland, experience timeless landscapes and ancient rock art. Stay in a comfortable lodge designed to blend with its surroundings, offering exciting excursions to explore the desert's hidden gems.</p>
+            <div class="lux-carousel">
+                <img src="https://wetu.com/imageHandler/c1920x1080/312689/img_e18011.jpg?fmt=jpg" alt="Lodge Damaraland">
+                <img src="https://wetu.com/imageHandler/c1920x1080/312689/wozde81901.jpg?fmt=jpg" alt="Aerial View">
+                <img src="https://wetu.com/imageHandler/c1920x1080/312689/img_e18421.jpg?fmt=jpg" alt="Bar Area">
+            </div>
+            <div class="lux-scroll-hint">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </div>
+        </div>
+
+        <!-- DAY 9-10 -->
+        <div class="lux-day-block" id="day-9">
+            <div class="lux-day-number-row">
+                <span class="lux-day-numeral">09</span>
+                <div class="lux-day-line"></div>
+            </div>
+            <span class="lux-day-location">ETOSHA SOUTH — ETOSHA SAFARI CAMP</span>
+            <h2 class="lux-day-title">Gateway to Wildlife</h2>
+            <p class="lux-day-desc">Set near the southern entrance to Etosha National Park, Etosha Safari Camp gives you access to one of Africa's most celebrated wildlife sanctuaries. Enjoy an evening of delicious meals and sunset views.</p>
+            <div class="lux-carousel">
+                <img src="https://wetu.com/imageHandler/c1920x1080/10560/dsc_7278.jpg?fmt=jpg" alt="Etosha Safari Camp">
+                <img src="https://wetu.com/imageHandler/c1920x1080/10560/etosha_game_drive1.jpg?fmt=jpg" alt="Game Drive">
+                <img src="https://wetu.com/imageHandler/c1920x1080/123643/etosha_5.jpg?fmt=jpg" alt="Etosha Wildlife">
+            </div>
+            <div class="lux-scroll-hint">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </div>
+        </div>
+
+        <!-- DAY 10-12 -->
+        <div class="lux-day-block" id="day-10">
+            <div class="lux-day-number-row">
+                <span class="lux-day-numeral">10</span>
+                <div class="lux-day-line"></div>
+            </div>
+            <span class="lux-day-location">ETOSHA RESERVE — ONGUMA BUSH CAMP</span>
+            <h2 class="lux-day-title">The Great Salt Pan</h2>
+            <p class="lux-day-desc">Enjoy luxurious tented suites at Onguma, a private reserve bordering Etosha National Park. The tranquil setting allows for both thrilling game drives and romantic evenings by the campfire.</p>
+            <div class="lux-carousel">
+                <img src="https://wetu.com/imageHandler/c1920x1080/8717/onguma_bush_camp_1098.jpg?fmt=jpg" alt="Onguma Bush Camp">
+                <img src="https://wetu.com/imageHandler/c1920x1080/8717/onguma_bush_camp_1117.jpg?fmt=jpg" alt="Dining Area">
+                <img src="https://wetu.com/imageHandler/c1920x1080/8717/d31g9127.jpg?fmt=jpg" alt="Pool Area">
+            </div>
+            <div class="lux-scroll-hint">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </div>
+        </div>
+
+        <!-- DAY 12-14 -->
+        <div class="lux-day-block" id="day-12">
+            <div class="lux-day-number-row">
+                <span class="lux-day-numeral">12</span>
+                <div class="lux-day-line"></div>
+            </div>
+            <span class="lux-day-location">OTJIWA NATURE RESERVE — EAGLE'S REST</span>
+            <h2 class="lux-day-title">Journey's End in Luxury</h2>
+            <p class="lux-day-desc">End your Namibian adventure in luxury at Eagle's Rest. Nestled in the peaceful Otjiwa Nature Reserve, the lodge offers exceptional service and the chance to unwind with private bush walks or simply relax.</p>
+            <div class="lux-carousel">
+                <img src="https://wetu.com/imageHandler/c1920x1080/29061/2s3a1677.jpg?fmt=jpg" alt="Eagle's Rest Exterior">
+                <img src="https://wetu.com/imageHandler/c1920x1080/29061/2s3a0834.jpg?fmt=jpg" alt="Lounge Area">
+                <img src="https://wetu.com/imageHandler/c1920x1080/29061/2s3a9305.jpg?fmt=jpg" alt="Chalet Bedroom">
+            </div>
+            <div class="lux-scroll-hint">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </div>
+        </div>
+
+        <!-- DAY 14 -->
+        <div class="lux-day-block" id="day-14">
+            <div class="lux-day-number-row">
+                <span class="lux-day-numeral">14</span>
+                <div class="lux-day-line"></div>
+            </div>
+            <span class="lux-day-location">WINDHOEK — HOSEA KUTAKO AIRPORT</span>
+            <h2 class="lux-day-title">Departure Bound</h2>
+            <p class="lux-day-desc">After a breathtaking final morning in the Otjiwa reserve, make your way back down to the capital for your departure. Journey safely and take home an eternity of memories.</p>
+        </div>
+
     </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const pins = document.querySelectorAll('.lux-map-pin');
+        const dayBlocks = document.querySelectorAll('.lux-day-block');
+        const mapWidget = document.querySelector('.lux-interactive-map');
+        let scrollTimeout;
+
+        // Auto-show map on scroll, hide when stopped for 2 seconds
+        window.addEventListener('scroll', () => {
+            if (mapWidget && window.innerWidth >= 1024) {
+                // Show map while scrolling
+                mapWidget.classList.add('is-visible');
+                
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    // Hide map when there is no movement for 2 seconds
+                    mapWidget.classList.remove('is-visible');
+                }, 2000); 
+            }
+        });
+
+        // Setup Intersection Observer to detect which day is currently being viewed
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const dayId = entry.target.id;
+                    
+                    // Remove active class from all pins
+                    document.querySelectorAll('.lux-map-pin').forEach(p => {
+                        p.classList.remove('is-active');
+                    });
+                    const targetPin = document.querySelector(`.lux-map-pin[data-target~="${entry.target.id}"]`);
+                    if (targetPin) {
+                        targetPin.classList.add('is-active');
+                    }
+                }
+            });
+        }, {
+            root: null,
+            rootMargin: "-20% 0px -60% 0px", // triggers when block scrolls near top of viewport
+            threshold: 0
+        });
+
+        dayBlocks.forEach(block => observer.observe(block));
+        
+        // Optional: click pin to scroll to that day
+        pins.forEach(pin => {
+            pin.addEventListener('click', () => {
+                const targetId = pin.getAttribute('data-target');
+                const targetEl = document.getElementById(targetId);
+                if(targetEl) {
+                    targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    });
+</script>
+
+<script async data-explicit-opt-in="true" data-deployment-id="dpl_6PBoQTU3mA7FLoy2PJLMWZQyryfg" src="https://vercel.live/_next-live/feedback/feedback.js"></script>
+</body>
+</html>
